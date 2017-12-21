@@ -9,26 +9,21 @@ import { Footer, Header } from "../Header&Footer";
 
 class ScreenTemplate extends Component {
   render() {
-    const { children } = this.props;
+    const { children, headercircles, footercircles, headertitle, footertitle } = this.props;
 
     return (
       <Container>
         <View>
-          <Header />
+          <Header 
+          circles={headercircles}
+          title={headertitle}
+          />
           <ScrollView>
             <View style={styles.body}>{children}</View>
           </ScrollView>
           <Footer
-            circles={[
-              {
-                image: require("../../resources/images/settings-512.png"),
-                label: "menu"
-              },
-              {
-                image: require("../../resources/images/settings-512.png"),
-                label: "persoonlijk"
-              }
-            ]}            
+            circles={footercircles}
+            title={footertitle}            
           />
         </View>
       </Container>
@@ -37,11 +32,19 @@ class ScreenTemplate extends Component {
 }
 
 ScreenTemplate.PropTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  headercircles: PropTypes.any,
+  footercircles: PropTypes.any,
+  footertitle: PropTypes.string,
+  headertitle: PropTypes.string,
 };
 
 ScreenTemplate.defaultProps = {
-  children: <View />
+  children: <View />,
+  headercircles: [],
+  footercircles: [],  
+  footertitle: '',
+  headertitle: '',
 };
 
 export default ScreenTemplate;

@@ -6,6 +6,7 @@ import { Circle } from "../Circle";
 
 import styles from "./styles";
 import TextBox from "../TextBox/TextBox";
+
 const GLOBAL = require("../../config/Globals");
 
 const temp = [
@@ -36,9 +37,18 @@ class HFContainer extends Component {
   }
 
   render() {
-    const { isHeader, circles } = this.props;
+    const { isHeader, circles, title } = this.props;
 
     let container;
+
+    const titlecontainer = (
+      <View>
+        <TextBox
+         fontColor={GLOBAL.COLOR.BLUE}
+         fontSize={30} 
+        >{title}</TextBox>
+      </View>
+    );
 
     const circlebox = (
       <View style={styles.innerbox}>
@@ -51,7 +61,7 @@ class HFContainer extends Component {
     if (isHeader) {
       container = (
         <View>
-          <View style={[styles.hfbody, styles.header]} />
+          <View style={[styles.hfbody, styles.header]}>{titlecontainer}</View>
           {circlebox}
         </View>
       );
@@ -59,7 +69,7 @@ class HFContainer extends Component {
       container = (
         <View>
           {circlebox}
-          <View style={[styles.hfbody, styles.footer]} />
+          <View style={[styles.hfbody, styles.footer]}>{titlecontainer}</View>
         </View>
       );
     }
@@ -70,12 +80,14 @@ class HFContainer extends Component {
 
 HFContainer.PropTypes = {
   circles: PropTypes.arrayOf(object),
-  isHeader: PropTypes.bool
+  isHeader: PropTypes.bool,
+  title: PropTypes.string
 };
 
 HFContainer.defaultProps = {
   circles: [],
-  isHeader: true
+  isHeader: true,
+  title: ""
 };
 
 export default HFContainer;

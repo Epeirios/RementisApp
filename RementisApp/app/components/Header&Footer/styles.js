@@ -12,7 +12,9 @@ export default EStyleSheet.create({
   hfbody: {
     height: 45,
     backgroundColor: "$primaryWhite",
-    zIndex: 2
+    zIndex: 2,
+    alignItems: "center",
+    justifyContent: 'center'
   },
   header: {},
   footer: {
@@ -20,10 +22,10 @@ export default EStyleSheet.create({
   },
   innerbox: {
     flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     position: "absolute",
     start: 0,
     end: 0,
     zIndex: 5
-  }
+  },
 });
