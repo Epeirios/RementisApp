@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Image, TouchableHighlight, Text } from "react-native";
+import { View, TouchableHighlight, Text } from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from "./styles";
 
@@ -10,14 +11,14 @@ const FONTSIZE = 9;
 
 class Circle extends Component {
   render() {
-    const {image, color, labelAbove, label, isButton, onPress} = this.props;
+    const {color, labelAbove, label, isButton, onPress, icon} = this.props;
 
     let imagecontainer;
     let buttoncontainer;
     let labelcontainer;
 
-    if (image) {
-      imagecontainer = <Image source={image} style={styles.image} />;
+    if (icon) {
+      imagecontainer = <Icon size={22} name={icon} color={color} />;
     } else {
       imagecontainer = <View />;
     }
@@ -71,7 +72,7 @@ class Circle extends Component {
  * shadows
  */
 Circle.PropTypes = {
-  image: PropTypes.any,
+  icon: PropTypes.string,
   isButton: PropTypes.bool,
   onPress: PropTypes.func,
   label: PropTypes.string,
@@ -80,6 +81,7 @@ Circle.PropTypes = {
 };
 
 Circle.defaultProps = {
+  icon: 'home',
   isButton: false,
   labelAbove: false,
   label: "label",

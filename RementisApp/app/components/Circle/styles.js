@@ -32,7 +32,9 @@ export default EStyleSheet.create({
     width: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
     height: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
     borderRadius: CIRCLE_RADIUS,
-    backgroundColor: "$primaryWhite"
+    backgroundColor: "$primaryWhite",    
+    alignItems: "center",
+    justifyContent: "center",
   },
   image: {
     width: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,

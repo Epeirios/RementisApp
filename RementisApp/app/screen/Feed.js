@@ -6,25 +6,27 @@ import { ScreenTemplate } from "../components/ScreenTemplate";
 import { Container } from "../components/Container";
 import { Footer, Header } from "../components/Header&Footer";
 import { TextBox } from "../components/TextBox";
+import { List } from "../components/List/index";
 
 const GLOBAL = require("../config/Globals");
 
+const temp = [
+  { text: "item 1", checked: true },
+  { text: "item 2", checked: true },
+  { text: "item 3", checked: false },
+  { text: "item 4", checked: false }
+];
+
 export default () => (
   <ScreenTemplate
-  headertitle={'rementis'}
-  footercircles={[
-    {
-      icon: 'md-menu',
-      label: "menu"
-    },
-    {
-      icon: 'md-ionitron',
-      label: "persoonlijk"
-    }
-  ]}  
-  
+    headertitle={"Activiteiten"}
+    headercircles={[
+      {
+        icon: "md-arrow-round-back",
+        label: "back"
+      }
+    ]}
   >
-    <TextBox fontColor={GLOBAL.COLOR.WHITE}>hallo allemaal test test</TextBox>
-    <TextBox fontColor={GLOBAL.COLOR.WHITE}>Heerlen</TextBox>
+    <List list={temp} />
   </ScreenTemplate>
 );

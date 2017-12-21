@@ -9,25 +9,14 @@ import TextBox from "../TextBox/TextBox";
 
 const GLOBAL = require("../../config/Globals");
 
-const temp = [
-  {
-    image: require("../../resources/images/settings-512.png"),
-    label: "blalba"
-  },
-  {
-    image: require("../../resources/images/settings-512.png"),
-    label: "hallo"
-  }
-];
-
 class HFContainer extends Component {
   renderCircle({ circle, index }) {
-    const { label, image } = circle;
+    const { label, icon } = circle;
     const { isHeader } = this.props;
 
     return (
       <Circle
-        image={image}
+        icon={icon}
         label={label}
         labelAbove={isHeader}
         color={GLOBAL.COLOR.GREYBLUE}
