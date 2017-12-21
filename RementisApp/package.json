@@ -1,0 +1,38 @@
+{
+  "name": "RementisApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "6.2.0",
+    "color": "2.0.0",
+    "moment": "2.18.1",
+    "prop-types": "^15.6.0",
+    "react": "16.0.0",
+    "react-logger": "^1.1.0",
+    "react-native": "0.51.0",
+    "react-native-checkbox": "^2.0.0",
+    "react-native-extended-stylesheet": "0.8.0",
+    "react-native-row-component": "^1.1.10",
+    "react-native-shadow": "^1.2.1",
+    "react-native-svg": "^5.5.1",
+    "react-navigation": "^1.0.0-beta.22",
+    "react-redux": "^5.0.6",
+    "react-thunk": "^1.0.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "save": "^2.3.2"
+  },
+  "devDependencies": {
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
