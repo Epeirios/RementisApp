@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
-
 import { ScreenTemplate } from "../components/ScreenTemplate";
-
+import PropTypes from "prop-types";
 import { Container } from "../components/Container";
 import { Footer, Header } from "../components/Header&Footer";
 import { TextBox } from "../components/TextBox";
@@ -17,16 +16,28 @@ const temp = [
   { text: "item 4", checked: false }
 ];
 
-export default () => (
-  <ScreenTemplate
-    headertitle={"Activiteiten"}
-    headercircles={[
-      {
-        icon: "md-arrow-round-back",
-        label: "back"
-      }
-    ]}
-  >
-    <List list={temp} />
-  </ScreenTemplate>
-);
+class Feed extends Component {
+  static propTypes = {
+    navigation: PropTypes.object
+  };
+  render() {
+    return (
+      <ScreenTemplate
+        headertitle={"Activiteiten"}
+        headercircles={[
+          {
+            icon: "md-arrow-round-back",
+            label: "back",
+            onPress: () => {
+              this.props.navigation.goBack(null);
+            }
+          }
+        ]}
+      >
+        <List list={temp} />
+      </ScreenTemplate>
+    );
+  }
+}
+
+export default Feed;

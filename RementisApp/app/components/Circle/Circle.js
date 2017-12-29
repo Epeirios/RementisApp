@@ -11,7 +11,7 @@ const FONTSIZE = 9;
 
 class Circle extends Component {
   render() {
-    const {color, labelAbove, label, isButton, onPress, icon} = this.props;
+    const {color, labelAbove, label, onPress, icon} = this.props;
 
     let imagecontainer;
     let buttoncontainer;
@@ -51,7 +51,7 @@ class Circle extends Component {
       );
     }
 
-    if (isButton) {
+    if (typeof onPress === 'function') {
       buttoncontainer = (
         <TouchableHighlight onPress={onPress}>
           {labelcontainer}
@@ -73,7 +73,6 @@ class Circle extends Component {
  */
 Circle.PropTypes = {
   icon: PropTypes.string,
-  isButton: PropTypes.bool,
   onPress: PropTypes.func,
   label: PropTypes.string,
   labelAbove: PropTypes.bool,
@@ -82,7 +81,6 @@ Circle.PropTypes = {
 
 Circle.defaultProps = {
   icon: 'home',
-  isButton: false,
   labelAbove: false,
   label: "label",
   color: '#F00',

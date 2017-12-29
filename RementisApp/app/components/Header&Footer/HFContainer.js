@@ -11,7 +11,7 @@ const GLOBAL = require("../../config/Globals");
 
 class HFContainer extends Component {
   renderCircle({ circle, index }) {
-    const { label, icon } = circle;
+    const { label, icon, onPress } = circle;
     const { isHeader } = this.props;
 
     return (
@@ -21,6 +21,7 @@ class HFContainer extends Component {
         labelAbove={isHeader}
         color={GLOBAL.COLOR.GREYBLUE}
         key={index}
+        onPress={onPress}
       />
     );
   }

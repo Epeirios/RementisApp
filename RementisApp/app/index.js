@@ -1,19 +1,14 @@
-import React from 'react';
-import EStyleSheet from 'react-native-extended-stylesheet';
+import React from "react";
+import EStyleSheet from "react-native-extended-stylesheet";
 
-import Home from './screen/Home';
-import Feed from './screen/Feed';
+import Navigator from "./config/routes";
 
 EStyleSheet.build({
-    $primaryBlue: '#4F6D7A',
-    $primaryWhite: '#FFFFFF',
-    $outline: 0,
-})
+  $primaryBlue: "#4F6D7A",
+  $primaryWhite: "#FFFFFF",
+  $outline: 0
+});
 
-const App = () => (
-    <Feed>
-
-    </Feed>
-);
+const App = () => <Navigator />;
 
 export default App;
