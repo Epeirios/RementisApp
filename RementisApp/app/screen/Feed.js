@@ -6,6 +6,7 @@ import { Container } from "../components/Container";
 import { Footer, Header } from "../components/Header&Footer";
 import { TextBox } from "../components/TextBox";
 import { List } from "../components/List/index";
+import { Profile } from "../components/Profile";
 
 const GLOBAL = require("../config/Globals");
 
@@ -14,6 +15,17 @@ const temp = [
   { text: "item 2", checked: true },
   { text: "item 3", checked: false },
   { text: "item 4", checked: false }
+];
+
+const temp2 = [
+  {
+    name: "herbert kartoffelsalat",
+    profilepic: require("../resources/images/opa1.jpg")
+  },
+  {
+    name: "Hermelien Jaspers",
+    profilepic: require("../resources/images/oma1.jpg")
+  }
 ];
 
 class Feed extends Component {
@@ -34,6 +46,8 @@ class Feed extends Component {
           }
         ]}
       >
+        <Profile />
+
         <List list={temp} />
       </ScreenTemplate>
     );

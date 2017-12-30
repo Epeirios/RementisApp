@@ -8,7 +8,8 @@ export default EStyleSheet.create({
     backgroundColor: "$primaryBlue"
   },
   body: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10
   }
 });

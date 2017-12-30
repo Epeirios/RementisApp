@@ -3,9 +3,11 @@ import EStyleSheet from "react-native-extended-stylesheet";
 const CIRCLE_RADIUS = 25;
 const CIRCLE_WIDTH = 4;
 
+const GLOBAL = require("../../config/Globals");
+
 export default EStyleSheet.create({
   container: {
-    width: 70,
+    width: 50,
     height: 70
   },
   labelcontainer: {
@@ -15,7 +17,7 @@ export default EStyleSheet.create({
     width: CIRCLE_RADIUS * 2,
     height: CIRCLE_RADIUS * 2,
     borderRadius: CIRCLE_RADIUS,
-    backgroundColor: "$primaryWhite",
+    backgroundColor: GLOBAL.COLOR.WHITE,
     alignItems: "center",
     justifyContent: "center"
   },

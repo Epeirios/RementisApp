@@ -21,7 +21,7 @@ class Circle extends Component {
 
     /** imagecontainer */
     if (icon) {
-      imagecontainer = <Icon size={22} name={icon} color={color} />;
+      imagecontainer = <Icon size={24} name={icon} color={color} />;
     } else {
       imagecontainer = null;
     }
@@ -29,7 +29,7 @@ class Circle extends Component {
     /** circlecontainer */
     circlecontainer = (
       <View style={styles.outercircle}>
-        <View style={styles.centercircle}>
+        <View style={[styles.centercircle, backgroundColor={color} ]}>
           <View style={styles.innercircle}>{imagecontainer}</View>
         </View>
       </View>
@@ -38,7 +38,11 @@ class Circle extends Component {
     /** buttoncontainer */
     if (typeof onPress === "function") {
       buttoncontainer = (
-        <TouchableHighlight onPress={onPress} style={styles.button} underlayColor="transparent">
+        <TouchableHighlight
+          onPress={onPress}
+          style={styles.button}
+          underlayColor="transparent"
+        >
           {circlecontainer}
         </TouchableHighlight>
       );
@@ -56,20 +60,24 @@ class Circle extends Component {
     );
 
     /** container */
-    if (labelAbove) {
-      container = (
-        <View style={styles.labelcontainer}>
-          {labelcontainer}
-          {buttoncontainer}
-        </View>
-      );
+    if (typeof label !== "undefined") {
+      if (labelAbove) {
+        container = (
+          <View style={styles.labelcontainer}>
+            {labelcontainer}
+            {buttoncontainer}
+          </View>
+        );
+      } else {
+        container = (
+          <View style={styles.labelcontainer}>
+            {buttoncontainer}
+            {labelcontainer}
+          </View>
+        );
+      }
     } else {
-      container = (
-        <View style={styles.labelcontainer}>
-          {buttoncontainer}
-          {labelcontainer}
-        </View>
-      );
+      container = buttoncontainer;
     }
 
     return <View style={styles.container}>{container}</View>;
@@ -91,9 +99,8 @@ Circle.PropTypes = {
 };
 
 Circle.defaultProps = {
-  icon: "home",
+  icon: "md-home",
   labelAbove: false,
-  label: "label",
   color: "#F00"
 };
 
