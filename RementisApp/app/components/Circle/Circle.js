@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, TouchableHighlight, Text } from "react-native";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Ionicons";
 
 import styles from "./styles";
 
@@ -11,57 +11,68 @@ const FONTSIZE = 9;
 
 class Circle extends Component {
   render() {
-    const {color, labelAbove, label, onPress, icon} = this.props;
+    const { color, labelAbove, label, onPress, icon } = this.props;
 
     let imagecontainer;
+    let circlecontainer;
     let buttoncontainer;
     let labelcontainer;
+    let container;
 
+    /** imagecontainer */
     if (icon) {
       imagecontainer = <Icon size={22} name={icon} color={color} />;
     } else {
-      imagecontainer = <View />;
+      imagecontainer = null;
     }
 
-    if (labelAbove) {
-      labelcontainer = (
-        <View style={styles.labelcontainer}>
-          <TextBox fontSize={FONTSIZE} fontColor={color} style={styles.label}>
-            {label}
-          </TextBox>
-          <View style={styles.outercircle}>
-            <View style={styles.centercircle}>
-              <View style={styles.innercircle}>{imagecontainer}</View>
-            </View>
-          </View>
+    /** circlecontainer */
+    circlecontainer = (
+      <View style={styles.outercircle}>
+        <View style={styles.centercircle}>
+          <View style={styles.innercircle}>{imagecontainer}</View>
         </View>
-      );
-    } else {
-      labelcontainer = (
-        <View style={styles.labelcontainer}>
-          <View style={styles.outercircle}>
-            <View style={styles.centercircle}>
-              <View style={styles.innercircle}>{imagecontainer}</View>
-            </View>
-          </View>
-          <TextBox fontSize={FONTSIZE} fontColor={color}>
-            {label}
-          </TextBox>
-        </View>
-      );
-    }
+      </View>
+    );
 
-    if (typeof onPress === 'function') {
+    /** buttoncontainer */
+    if (typeof onPress === "function") {
       buttoncontainer = (
-        <TouchableHighlight onPress={onPress}>
-          {labelcontainer}
+        <TouchableHighlight onPress={onPress} style={styles.button} underlayColor="transparent">
+          {circlecontainer}
         </TouchableHighlight>
       );
     } else {
-      buttoncontainer = labelcontainer;
+      buttoncontainer = circlecontainer;
     }
 
-    return <View style={styles.container}>{buttoncontainer}</View>;
+    /** labelcontainer */
+    labelcontainer = (
+      <View style={styles.labelcontainer}>
+        <TextBox fontSize={FONTSIZE} fontColor={color} style={styles.label}>
+          {label}
+        </TextBox>
+      </View>
+    );
+
+    /** container */
+    if (labelAbove) {
+      container = (
+        <View style={styles.labelcontainer}>
+          {labelcontainer}
+          {buttoncontainer}
+        </View>
+      );
+    } else {
+      container = (
+        <View style={styles.labelcontainer}>
+          {buttoncontainer}
+          {labelcontainer}
+        </View>
+      );
+    }
+
+    return <View style={styles.container}>{container}</View>;
   }
 }
 
@@ -80,10 +91,10 @@ Circle.PropTypes = {
 };
 
 Circle.defaultProps = {
-  icon: 'home',
+  icon: "home",
   labelAbove: false,
   label: "label",
-  color: '#F00',
+  color: "#F00"
 };
 
 export default Circle;

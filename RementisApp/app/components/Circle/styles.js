@@ -6,11 +6,10 @@ const CIRCLE_WIDTH = 4;
 export default EStyleSheet.create({
   container: {
     width: 70,
-    height: 70,
+    height: 70
   },
   labelcontainer: {
-    alignItems: "center",
-    elevation: 5
+    alignItems: "center"
   },
   outercircle: {
     width: CIRCLE_RADIUS * 2,
@@ -32,9 +31,9 @@ export default EStyleSheet.create({
     width: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
     height: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
     borderRadius: CIRCLE_RADIUS,
-    backgroundColor: "$primaryWhite",    
+    backgroundColor: "$primaryWhite",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   image: {
     width: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
@@ -43,5 +42,7 @@ export default EStyleSheet.create({
   textBox: {
     color: "$primaryBlue",
     fontSize: 12
+  },
+  button: {
   }
 });
