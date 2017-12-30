@@ -1,50 +1,52 @@
 import EStyleSheet from "react-native-extended-stylesheet";
 
-const CIRCLE_RADIUS = 25;
-const CIRCLE_WIDTH = 4;
+const CONTAINER_HEIGHT = 70;
+const CIRCLE_WIDTH = 50;
+const CIRCLE_BAND = 4;
 
 const GLOBAL = require("../../config/Globals");
 
 export default EStyleSheet.create({
   container: {
-    width: 50,
-    height: 70
+    width: CIRCLE_WIDTH
+  },
+  haslabelContainer: {
+    height: CONTAINER_HEIGHT
+  },
+  nolabelContainer: {
+    height: CIRCLE_WIDTH
   },
   labelcontainer: {
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "center",
+    height: CONTAINER_HEIGHT - CIRCLE_WIDTH
   },
   outercircle: {
-    width: CIRCLE_RADIUS * 2,
-    height: CIRCLE_RADIUS * 2,
-    borderRadius: CIRCLE_RADIUS,
+    width: CIRCLE_WIDTH,
+    height: CIRCLE_WIDTH,
+    borderRadius: CIRCLE_WIDTH / 2,
     backgroundColor: GLOBAL.COLOR.WHITE,
     alignItems: "center",
     justifyContent: "center"
   },
   centercircle: {
-    width: (CIRCLE_RADIUS - CIRCLE_WIDTH) * 2,
-    height: (CIRCLE_RADIUS - CIRCLE_WIDTH) * 2,
-    borderRadius: CIRCLE_RADIUS,
-    backgroundColor: "$primaryBlue",
+    width: (CIRCLE_WIDTH / 2 - CIRCLE_BAND) * 2,
+    height: (CIRCLE_WIDTH / 2 - CIRCLE_BAND) * 2,
+    borderRadius: CIRCLE_WIDTH,
+    backgroundColor: GLOBAL.COLOR.GREYBLUE,
     alignItems: "center",
     justifyContent: "center"
   },
   innercircle: {
-    width: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
-    height: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
-    borderRadius: CIRCLE_RADIUS,
-    backgroundColor: "$primaryWhite",
+    width: (CIRCLE_WIDTH / 2 - CIRCLE_BAND * 2) * 2,
+    height: (CIRCLE_WIDTH / 2 - CIRCLE_BAND * 2) * 2,
+    borderRadius: CIRCLE_WIDTH,
+    backgroundColor: GLOBAL.COLOR.WHITE,
     alignItems: "center",
     justifyContent: "center"
   },
   image: {
-    width: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2,
-    height: (CIRCLE_RADIUS - CIRCLE_WIDTH * 2) * 2
-  },
-  textBox: {
-    color: "$primaryBlue",
-    fontSize: 12
-  },
-  button: {
+    width: (CIRCLE_WIDTH / 2 - CIRCLE_BAND * 2) * 2,
+    height: (CIRCLE_WIDTH / 2 - CIRCLE_BAND * 2) * 2
   }
 });

@@ -7,7 +7,7 @@ import styles from "./styles";
 
 import { TextBox } from "../TextBox";
 
-const FONTSIZE = 9;
+const FONTSIZE = 12;
 
 class Circle extends Component {
   render() {
@@ -29,7 +29,7 @@ class Circle extends Component {
     /** circlecontainer */
     circlecontainer = (
       <View style={styles.outercircle}>
-        <View style={[styles.centercircle, backgroundColor={color} ]}>
+        <View style={[styles.centercircle, {backgroundColor: color} ]}>
           <View style={styles.innercircle}>{imagecontainer}</View>
         </View>
       </View>
@@ -53,7 +53,7 @@ class Circle extends Component {
     /** labelcontainer */
     labelcontainer = (
       <View style={styles.labelcontainer}>
-        <TextBox fontSize={FONTSIZE} fontColor={color} style={styles.label}>
+        <TextBox fontSize={FONTSIZE} fontColor={color}>
           {label}
         </TextBox>
       </View>
@@ -63,21 +63,25 @@ class Circle extends Component {
     if (typeof label !== "undefined") {
       if (labelAbove) {
         container = (
-          <View style={styles.labelcontainer}>
+          <View style={styles.haslabelContainer}>
             {labelcontainer}
             {buttoncontainer}
           </View>
         );
       } else {
         container = (
-          <View style={styles.labelcontainer}>
+          <View style={styles.haslabelContainer}>
             {buttoncontainer}
             {labelcontainer}
           </View>
         );
       }
     } else {
-      container = buttoncontainer;
+      container = (
+        <View style={styles.nolabelContainer}> 
+          {buttoncontainer}
+        </View>
+      );
     }
 
     return <View style={styles.container}>{container}</View>;

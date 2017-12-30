@@ -14,18 +14,19 @@ export default EStyleSheet.create({
     backgroundColor: "$primaryWhite",
     zIndex: 2,
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: "center"
   },
-  header: {},
+  header: {
+  },
   footer: {
     top: 25
   },
-  innerbox: {
+  circleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     position: "absolute",
-    start: 0,
-    end: 0,
-    zIndex: 5
-  },
+    zIndex: 5,
+    paddingLeft: 10,
+    paddingRight: 10
+  }
 });

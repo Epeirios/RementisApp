@@ -4,43 +4,53 @@ const GLOBAL = require("../../config/Globals");
 
 const CONTAINERHEIGHT = 120;
 const PADDING = 5;
-const PROFILEPICSIZE = CONTAINERHEIGHT - PADDING * 2;
+const PROFILEPICSIZE = CONTAINERHEIGHT - PADDING * 4;
 
 export default EStyleSheet.create({
-  container:{
+  container: {},
+  profileContainer: {
+    flexDirection: "column",
+    backgroundColor: GLOBAL.COLOR.GREY,
+    borderRadius: PADDING,
+    marginBottom: PADDING
+  },
+  profileHeaderContainer: {
     padding: PADDING,
     backgroundColor: GLOBAL.COLOR.WHITE,
-    width: '100%',
+    width: "100%",
     height: CONTAINERHEIGHT,
-    flexDirection: 'row',
+    flexDirection: "row",
     borderRadius: PADDING
   },
-  profilepicContainer : {
-
+  profilepicContainer: {
+    width: "30%",
+    alignItems: "center",
+    justifyContent: "center"
   },
   detailsContainer: {
-      padding: PADDING,
-    flexDirection: 'column'
+    paddingLeft: PADDING,
+    paddingRight: PADDING,
+    width: "70%",
+    flexDirection: "column",
+    justifyContent: "space-between"
   },
-  textContainer: {
-
-  },
+  textContainer: {},
   statusContainer: {
-    flexDirection: 'row'
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingRight: 20
   },
   rowSplitContainer: {
-    justifyContent: 'space-between',
-    flexDirection: 'row'
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center"
   },
-  stateIconContainer:{
-
-  },
+  stateIconContainer: {},
   profilepic: {
-    width: PROFILEPICSIZE, 
+    width: PROFILEPICSIZE,
     height: PROFILEPICSIZE,
-    borderRadius: PROFILEPICSIZE / 2,
+    borderRadius: PROFILEPICSIZE / 2
   },
-  text:{
-
-  }
+  titleText: {}
 });

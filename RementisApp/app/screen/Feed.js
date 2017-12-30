@@ -20,11 +20,35 @@ const temp = [
 const temp2 = [
   {
     name: "herbert kartoffelsalat",
-    profilepic: require("../resources/images/opa1.jpg")
+    profilepic: require("../resources/images/opa1.jpg"),
+    items: [
+      {
+        title: "Medicatie Innemen",
+        time: "11:00",
+        status: "wrong"
+      },
+      {
+        title: "Doktors afspraak",
+        time: "10:00",
+        status: "good"
+      },
+      {
+        title: "Truus Bellen",
+        time: "15:00",
+        status: "pending"
+      }
+    ]
   },
   {
     name: "Hermelien Jaspers",
-    profilepic: require("../resources/images/oma1.jpg")
+    profilepic: require("../resources/images/oma1.jpg"),
+    items: [
+      {
+        title: "Medicatie Innemen",
+        time: "11:00",
+        status: "pending"
+      },
+    ]
   }
 ];
 
@@ -46,7 +70,7 @@ class Feed extends Component {
           }
         ]}
       >
-        <Profile />
+        <Profile list={temp2} />
 
         <List list={temp} />
       </ScreenTemplate>

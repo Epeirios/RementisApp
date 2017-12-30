@@ -31,35 +31,37 @@ class HFContainer extends Component {
 
     let container;
 
-    const titlecontainer = (
+    /** titleContainer */
+    const titleContainer = (
       <View>
-        <TextBox
-         fontColor={GLOBAL.COLOR.BLUE}
-         fontSize={30} 
-        >{title}</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.BLUE} fontSize={30}>
+          {title}
+        </TextBox>
       </View>
     );
 
-    const circlebox = (
-      <View style={styles.innerbox}>
+    /** circleContainer */
+    const cirlceContainer = (
+      <View style={styles.circleContainer}>
         {circles.map((circle, index) => {
           return this.renderCircle({ circle, index });
         })}
       </View>
     );
 
+    /** container */
     if (isHeader) {
       container = (
         <View>
-          <View style={[styles.hfbody, styles.header]}>{titlecontainer}</View>
-          {circlebox}
+          <View style={[styles.hfbody, styles.header]}>{titleContainer}</View>
+          {cirlceContainer}
         </View>
       );
     } else {
       container = (
         <View>
-          {circlebox}
-          <View style={[styles.hfbody, styles.footer]}>{titlecontainer}</View>
+          {cirlceContainer}
+          <View style={[styles.hfbody, styles.footer]}>{titleContainer}</View>
         </View>
       );
     }

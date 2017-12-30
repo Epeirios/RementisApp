@@ -1,10 +1,12 @@
 module.exports = {
   COLOR: {
-    WHITE: "#FFF",
-    GREYBLUE: "#4F6D7A",
-    BLUE: '#1E90FF',
-    RED: '#F00',
-    GREEN: '#0F0',
-    ORANGE: '#E55300',
+    WHITE: "#FFFFFF",
+    BLACK: "#000000",
+    GREYBLUE: "#607D8B",
+    GREY: "#9E9E9E",
+    BLUE: "#2196F3",
+    RED: "#F44336",
+    GREEN: "#4CAF50",
+    ORANGE: "#FF9800"
   }
 };
