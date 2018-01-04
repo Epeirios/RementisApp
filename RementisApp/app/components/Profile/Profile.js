@@ -20,9 +20,55 @@ const FONTSIZE = 12;
 const STATUS_FONTSIZE = 30;
 const TEXTCOLOR = GLOBAL.COLOR.GREYBLUE;
 
+const GetStatusCount = (array, status) => {
+  let counter = 0;
+
+  array.forEach(element => {
+    if (element.status == status) {
+      counter++;
+    }
+  });
+
+  return String(counter);
+};
+
 class Profile extends Component {
   renderItem = (item, idx) => {
-    <Item item={item} key={idx} />;
+    const { title, time, status } = item;
+
+    let statusContainer;
+    let detailsContainer = (
+      <View style={styles.itemDetailsContainer}>
+        <TextBox>{title}</TextBox>
+        <TextBox>{time}</TextBox>
+        <TextBox>placeholder text</TextBox>
+      </View>
+    );
+
+    switch (status) {
+      case "good":
+        statusContainer = (
+          <Circle icon={"md-checkmark"} color={GLOBAL.COLOR.GREEN} />
+        );
+        break;
+      case "pending":
+        statusContainer = (
+          <Circle icon={"md-arrow-forward"} color={GLOBAL.COLOR.ORANGE} />
+        );
+        break;
+      case "wrong":
+        statusContainer = <Circle icon={"md-close"} color={GLOBAL.COLOR.RED} />;
+        break;
+      default:
+        statusContainer = <View />;
+    }
+
+    return (
+      <View style={styles.itemContainer} key={idx}>
+      {detailsContainer}
+        <View style={styles.itemStatusContainer}>{statusContainer}</View>
+      </View>
+    );
   };
 
   renderProfile = (profile, idx) => {
@@ -46,18 +92,18 @@ class Profile extends Component {
                 fontSize={STATUS_FONTSIZE}
                 fontColor={GLOBAL.COLOR.GREEN}
               >
-                1
+                {GetStatusCount(items, "good")}
               </TextBox>
               <Circle icon={"md-arrow-forward"} color={GLOBAL.COLOR.ORANGE} />
               <TextBox
                 fontSize={STATUS_FONTSIZE}
                 fontColor={GLOBAL.COLOR.ORANGE}
               >
-                2
+                {GetStatusCount(items, "pending")}
               </TextBox>
               <Circle icon={"md-close"} color={GLOBAL.COLOR.RED} />
               <TextBox fontSize={STATUS_FONTSIZE} fontColor={GLOBAL.COLOR.RED}>
-                0
+                {GetStatusCount(items, "wrong")}
               </TextBox>
             </View>
             <View style={styles.rowSplitContainer}>

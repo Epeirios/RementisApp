@@ -18,7 +18,6 @@ export default EStyleSheet.create({
     padding: PADDING,
     backgroundColor: GLOBAL.COLOR.WHITE,
     width: "100%",
-    height: CONTAINERHEIGHT,
     flexDirection: "row",
     borderRadius: PADDING
   },
@@ -52,5 +51,16 @@ export default EStyleSheet.create({
     height: PROFILEPICSIZE,
     borderRadius: PROFILEPICSIZE / 2
   },
-  titleText: {}
+  titleText: {},
+  itemContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  itemDetailsContainer: {
+    justifyContent: "space-between"
+  },
+  itemStatusContainer: {
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });

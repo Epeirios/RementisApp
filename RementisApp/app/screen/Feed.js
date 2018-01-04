@@ -63,7 +63,7 @@ class Feed extends Component {
         headercircles={[
           {
             icon: "md-arrow-round-back",
-            label: "back",
+            label: "terug",
             onPress: () => {
               this.props.navigation.goBack(null);
             }
