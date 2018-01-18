@@ -7,15 +7,11 @@ import HFContainer from "./HFContainer";
 
 class Header extends Component {
   render() {
-    const {circles, title} = this.props;
+    const { circles, title } = this.props;
 
     return (
       <View>
-        <HFContainer 
-        isHeader={true} 
-        circles={circles}
-        title={title}
-        />
+        <HFContainer isHeader={true} circles={circles} title={title} />
       </View>
     );
   }
@@ -23,12 +19,12 @@ class Header extends Component {
 
 Header.PropTypes = {
   circles: PropTypes.any,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 Header.defaultProps = {
   circles: [],
-  title: '',
+  title: ""
 };
 
 export default Header;

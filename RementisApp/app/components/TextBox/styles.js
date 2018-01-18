@@ -4,4 +4,7 @@ export default EStyleSheet.create({
   text: {      
     fontWeight: "normal",
   },
+  container: {
+    flex: 1
+  }
 });

@@ -1,10 +1,9 @@
 import EStyleSheet from "react-native-extended-stylesheet";
-import { Dimensions } from "react-native";
 
 export default EStyleSheet.create({
   container: {
     height: 70,
-    width: Dimensions.get("window").width,
+    width: "100%",
     alignSelf: "stretch",
     zIndex: 1,
     flexDirection: "column"

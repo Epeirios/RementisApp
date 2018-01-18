@@ -10,7 +10,7 @@ class TextBox extends Component {
     const { children, fontSize, fontColor } = this.props;
 
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={[styles.text, { color: fontColor, fontSize: fontSize }]}>
           {children.toUpperCase()}
         </Text>

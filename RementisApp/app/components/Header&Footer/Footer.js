@@ -7,12 +7,11 @@ import HFContainer from "./HFContainer";
 
 class Footer extends Component {
   render() {
-    const {circles, title} = this.props;
+    const { circles, title } = this.props;
+    
     return (
       <View>
-        <HFContainer isHeader={false} circles={circles}
-        title={title}
-        />
+        <HFContainer isHeader={false} circles={circles} title={title} />
       </View>
     );
   }
@@ -20,12 +19,12 @@ class Footer extends Component {
 
 Footer.PropTypes = {
   circles: PropTypes.any,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 Footer.defaultProps = {
   circles: [],
-  title: '',
+  title: ""
 };
 
 export default Footer;
