@@ -13,6 +13,8 @@ class Home extends Component {
     navigation: PropTypes.object
   };
   render() {
+    console.log("test");
+
     return (
       <ScreenTemplate
         headertitle={"rementis"}
