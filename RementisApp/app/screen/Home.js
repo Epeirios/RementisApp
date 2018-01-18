@@ -9,12 +9,15 @@ import { TextBox } from "../components/TextBox";
 const GLOBAL = require("../config/Globals");
 
 class Home extends Component {
+  static navigationOptions = {
+    tabBarVisible: false,
+  }
+
   static propTypes = {
     navigation: PropTypes.object
   };
-  render() {
-    console.log("test");
 
+  render() {
     return (
       <ScreenTemplate
         headertitle={"rementis"}
@@ -26,6 +29,12 @@ class Home extends Component {
               this.props.navigation.navigate("Feed");
             }
           },
+          {
+            label: "demo",
+            onPress: () => {
+              this.props.navigation.navigate("DemoApi");
+            }
+          }
         ]}
       >
         <TextBox fontColor={GLOBAL.COLOR.WHITE}>

@@ -1,7 +1,7 @@
 import { GET_PROFILE_DATA } from "../actions/rementis";
 
 const initialState = {
-  isFetching: true,
+  isFetching: false,
   profiles: [
     {
       name: "herbert kartoffelsalat",
@@ -19,6 +19,11 @@ const initialState = {
         },
         {
           title: "Truus Bellen",
+          time: "15:00",
+          status: "pending"
+        },
+        {
+          title: "Emiel Stinkt",
           time: "15:00",
           status: "pending"
         }
@@ -48,7 +53,5 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-
-console.log("initialState", initialState);
 
 export default reducer;

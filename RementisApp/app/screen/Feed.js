@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { FlatList, View, ScrollView, Text } from "react-native";
+import {
+  FlatList,
+  View,
+  ScrollView,
+  Text,
+  ActivityIndicator
+} from "react-native";
 import { ScreenTemplate } from "../components/ScreenTemplate";
 import PropTypes from "prop-types";
 import { Container } from "../components/Container";
@@ -7,13 +13,16 @@ import { Footer, Header } from "../components/Header&Footer";
 import { TextBox } from "../components/TextBox";
 import { Profile } from "../components/Profile";
 import { connect } from "react-redux";
-import { Circle } from "../components/Circle";
 
 import { getProfileData } from "../actions/rementis";
 
 const GLOBAL = require("../config/Globals");
 
 class Feed extends Component {
+  static navigationOptions = {
+    tabBarVisible: false
+  };
+
   static propTypes = {
     navigation: PropTypes.object,
     profilesData: PropTypes.array,
@@ -27,8 +36,8 @@ class Feed extends Component {
 
   render() {
     let body = <Profile list={this.props.profilesData} />;
-    if (this.props.isFetching){
-      body = <Circle />;
+    if (this.props.isFetching) {
+      body = <ActivityIndicator size="large" color="#fff" />;
     }
 
     return (

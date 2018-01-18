@@ -1,9 +1,10 @@
-import { StackNavigator } from "react-navigation";
+import { TabNavigator } from "react-navigation";
 
 import Home from "../screen/Home";
 import Feed from "../screen/Feed";
+import DemoApi from "../screen/DemoApi";
 
-export default StackNavigator(
+export default TabNavigator(
   {
     Home: {
       screen: Home,
@@ -16,9 +17,15 @@ export default StackNavigator(
       navigationOptions: {
         header: () => null
       }
+    },
+    DemoApi: {
+      screen: DemoApi,
+      navigationOptions: {
+        header: () => null
+      }
     }
   },
   {
-    mode: "modal"
+    swipeEnabled: false,
   }
 );

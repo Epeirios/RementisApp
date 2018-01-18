@@ -13,7 +13,7 @@ class ScreenTemplate extends Component {
 
     return (
       <Container>
-        <View>
+        <View style={styles.container}>
           <Header 
           circles={headercircles}
           title={headertitle}
