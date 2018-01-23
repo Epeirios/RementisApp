@@ -40,6 +40,12 @@ class Home extends Component {
             onPress: () => {
               this.props.navigation.navigate("Contacts");
             }
+          },
+          {
+            label: "AddAgendaPoint",
+            onPress: () => {
+              this.props.navigation.navigate("AddAgendaPoint");
+            }
           }
         ]}
       >

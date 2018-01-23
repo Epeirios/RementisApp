@@ -4,6 +4,7 @@ import Home from "../screen/Home";
 import Feed from "../screen/Feed";
 import DemoApi from "../screen/DemoApi";
 import Contacts from "../screen/Contacts";
+import AddAgendaPoint from "../screen/AddAgendaPoint";
 
 export default TabNavigator(
   {
@@ -27,6 +28,12 @@ export default TabNavigator(
     },
     Contacts: {
       screen: Contacts,
+      navigationOptions: {
+        header: () => null
+      }
+    },
+    AddAgendaPoint: {
+      screen: AddAgendaPoint,
       navigationOptions: {
         header: () => null
       }
