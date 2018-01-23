@@ -3,6 +3,7 @@ import { TabNavigator } from "react-navigation";
 import Home from "../screen/Home";
 import Feed from "../screen/Feed";
 import DemoApi from "../screen/DemoApi";
+import Contacts from "../screen/Contacts";
 
 export default TabNavigator(
   {
@@ -20,6 +21,12 @@ export default TabNavigator(
     },
     DemoApi: {
       screen: DemoApi,
+      navigationOptions: {
+        header: () => null
+      }
+    },
+    Contacts: {
+      screen: Contacts,
       navigationOptions: {
         header: () => null
       }

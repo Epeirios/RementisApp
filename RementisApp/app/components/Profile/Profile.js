@@ -20,11 +20,11 @@ const FONTSIZE = 12;
 const STATUS_FONTSIZE = 30;
 const TEXTCOLOR = GLOBAL.COLOR.GREYBLUE;
 
-const GetStatusCount = (array, status) => {
+const GetStatusCount = (array, state) => {
   let counter = 0;
 
   array.forEach(element => {
-    if (element.status == status) {
+    if (element.state == state) {
       counter++;
     }
   });
@@ -34,7 +34,7 @@ const GetStatusCount = (array, status) => {
 
 class Profile extends Component {
   renderItem = (item, idx) => {
-    const { title, time, status } = item;
+    const { title, time, state } = item;
 
     let statusContainer;
     let detailsContainer = (
@@ -45,7 +45,7 @@ class Profile extends Component {
       </View>
     );
 
-    switch (status) {
+    switch (state) {
       case "good":
         statusContainer = (
           <Circle icon={"md-checkmark"} color={GLOBAL.COLOR.GREEN} />
@@ -72,18 +72,18 @@ class Profile extends Component {
   };
 
   renderProfile = (profile, idx) => {
-    const { name, profilepic, items } = profile;
+    const { firstName, lastName, profilePic, items } = profile;
 
     return (
       <View style={styles.profileContainer} key={idx}>
         <View style={styles.profileHeaderContainer}>
           <View style={styles.profilepicContainer}>
-            <Image style={styles.profilepic} source={profilepic} />
+            <Image style={styles.profilepic} source={profilePic} />
           </View>
           <View style={styles.detailsContainer}>
             <View style={styles.textContainer}>
               <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
-                {name}
+                {`${firstName} ${lastName}`}
               </TextBox>
             </View>
             <View style={styles.statusContainer}>

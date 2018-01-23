@@ -4,40 +4,69 @@ const initialState = {
   isFetching: false,
   profiles: [
     {
-      name: "herbert kartoffelsalat",
-      profilepic: require("../resources/images/opa1.jpg"),
+      patientId: "1",
+      firstName: "Herbert",
+      lastName: "Kartoffelsalat",
+      gender: "male",
+      profilePic: require("../resources/images/opa1.jpg"),
       items: [
         {
-          title: "Medicatie Innemen",
-          time: "11:00",
-          status: "wrong"
+          messageId: "1",
+          title: "Medicatie innemen",
+          patientId: "1",
+          description: "Neem 5 paracetamol en 2 ibuprofen",
+          startDate: "12-01-2018", 
+          endDate: "12-01-2018",
+          startTime: "11:00", 
+          endTime: "11:00",
+          priority: "3",
+          state: "failed"
         },
         {
+          messageId: "2",
           title: "Doktors afspraak",
-          time: "10:00",
-          status: "good"
+          patientId: "1",
+          description: "Een afspraak bij doktor Klaassen voor de zware hoest",
+          startDate: "12-01-2018", 
+          endDate: "12-01-2018",
+          startTime: "12:00", 
+          endTime: "14:00",
+          priority: "2",          
+          state: "pending"
         },
         {
+          messageId: "3",
           title: "Truus Bellen",
-          time: "15:00",
-          status: "pending"
+          patientId: "1",
+          description: "Met Truus bellen over het kampioenschap bridgen",
+          startDate: "12-01-2018", 
+          endDate: "12-01-2018",
+          startTime: "16:00", 
+          endTime: "16:30",
+          priority: "1",
+          state: "completed"
         },
-        {
-          title: "Emiel Stinkt",
-          time: "15:00",
-          status: "pending"
-        }
       ]
     },
     {
-      name: "Hermelien Jaspers",
-      profilepic: require("../resources/images/oma1.jpg"),
+      patientId: "2",
+      firstName: "Hermelien",
+      lastName: "Jaspers",
+      gender: "female",
+      profilePic: require("../resources/images/oma1.jpg"),
       items: [
         {
-          title: "Medicatie Innemen",
-          time: "11:00",
-          status: "pending"
-        }
+          messageId: "4",
+          title: "Medicatie innemen",
+          patientId: "1",
+          description: "Met Truus bellen over het kampioenschap bridgen",
+          startDate: "12-01-2018", 
+          endDate: "12-01-2018",
+          startTime: "13:00", 
+          endTime: "13:00",
+          priority: "1",
+          state: "good"
+        },
       ]
     }
   ]

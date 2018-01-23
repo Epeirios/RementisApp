@@ -34,6 +34,12 @@ class Home extends Component {
             onPress: () => {
               this.props.navigation.navigate("DemoApi");
             }
+          },
+          {
+            label: "Contacten",
+            onPress: () => {
+              this.props.navigation.navigate("Contacts");
+            }
           }
         ]}
       >

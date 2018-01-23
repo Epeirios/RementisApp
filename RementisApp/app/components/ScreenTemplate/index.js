@@ -1,4 +1,4 @@
-import ScreenTemplate from './ScreenTemplate';
-import styles from './styles';
+import ScreenTemplate from "./ScreenTemplate";
+import styles from "./styles";
 
-export {ScreenTemplate, styles};
+export { ScreenTemplate, styles };

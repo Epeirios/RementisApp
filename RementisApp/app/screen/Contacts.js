@@ -1,34 +1,25 @@
-import React, { Component } from "react";
-import {
-  FlatList,
-  View,
-  ScrollView,
-  Text,
-  ActivityIndicator
-} from "react-native";
-import { ScreenTemplate } from "../components/ScreenTemplate";
+import React, { Component, version } from "react";
+import { View, ActivityIndicator } from "react-native";
 import PropTypes from "prop-types";
-import { Container } from "../components/Container";
-import { Footer, Header } from "../components/Header&Footer";
-import { TextBox } from "../components/TextBox";
-import { Profile } from "../components/Profile";
 import { connect } from "react-redux";
+
+import { ScreenTemplate } from "../components/ScreenTemplate";
+//import { ContactList } from "../components/ContactList/ContactList";
 import { getProfileData } from "../actions/rementis";
 
-//import { ContactList } from "../components/ContactList";
+import { Profile } from "../components/Profile";
+import { ContactList } from "../components/ContactList/index";
 
 const GLOBAL = require("../config/Globals");
 
-class Feed extends Component {
+class Contacts extends Component {
   static navigationOptions = {
-    tabBarVisible: false
-  };
+    tabBarVisible: false,
+  }
 
   static propTypes = {
-    navigation: PropTypes.object,
+    navigation: PropTypes.object,    
     profilesData: PropTypes.array,
-    isFetching: PropTypes.bool,
-    dispatch: PropTypes.func
   };
 
   componentWillMount() {
@@ -36,14 +27,14 @@ class Feed extends Component {
   }
 
   render() {
-    let body = <Profile list={this.props.profilesData} />;
+    let body = <ContactList contacts={this.props.profilesData}/>;
     if (this.props.isFetching) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 
     return (
       <ScreenTemplate
-        headertitle={"Activiteiten"}
+        headertitle={"Contacten"}
         headercircles={[
           {
             icon: "md-arrow-round-back",
@@ -70,4 +61,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Feed);
+//export default Contacts;
+export default connect(mapStateToProps)(Contacts);
