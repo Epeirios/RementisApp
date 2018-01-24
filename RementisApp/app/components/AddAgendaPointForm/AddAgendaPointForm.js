@@ -27,6 +27,11 @@ class AddAgendaPointForm extends Component {
     endDate: ""
   };
 
+  static propTypes = {
+    costumerId: PropTypes.number,
+    messageId: PropTypes.number
+  };
+
   componentWillMount() {
     this._setDate();
   }
@@ -67,7 +72,17 @@ class AddAgendaPointForm extends Component {
   };
 
   _handleButtonPress = () => {
-    this._sendAgendaItem();
+    let method = "POST";
+
+    if (this.props.costumerId === -1) {
+      return;
+    }
+
+    if(this.props.messageId !== -1){
+      //method = "PUT"
+    }
+
+    this._sendAgendaItem(method);
     this._resetFields();
     this.props.onConfirm();
   };
@@ -87,9 +102,21 @@ class AddAgendaPointForm extends Component {
     });
   };
 
-  _sendAgendaItem = () => {
-    fetch("https://rementisapi.azurewebsites.net/agendaitem", {
-      method: "POST",
+  _sendAgendaItem = method => {
+    let url;
+
+    switch (method) {
+      case "POST":
+        url = "https://rementisapi.azurewebsites.net/agendaitem";
+        break;
+
+      default:
+        url = "https://rementisapi.azurewebsites.net/agendaitem";
+        break;
+    }
+
+    fetch(url, {
+      method: method,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -102,8 +129,7 @@ class AddAgendaPointForm extends Component {
         EndDate: this.state.endDate,
         StartTime: this.state.startTime,
         EndTime: this.state.startTime,
-        Priority: this.state.isImportant,
-        State: "Emiel deze moet weg bij de post"
+        Priority: this.state.isImportant
       })
     });
   };

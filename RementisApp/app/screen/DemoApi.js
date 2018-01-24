@@ -31,7 +31,7 @@ class DemoApi extends Component {
   };
 
   componentDidMount() {
-    this.interval = setInterval(this.fetchData, 500);
+    //this.interval = setInterval(this.fetchData, 500);
   }
 
   componentWillUnmount() {
@@ -39,7 +39,7 @@ class DemoApi extends Component {
   }
 
   componentWillMount() {
-    this.fetchData();
+    //this.fetchData();
   }
 
   fetchData = async () => {

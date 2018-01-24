@@ -18,7 +18,9 @@ class AddAgendaPoint extends Component {
 
   static propTypes = {
     navigation: PropTypes.object,
-    profilesData: PropTypes.array
+    isFetching: PropTypes.bool,
+    selectedPatient: PropTypes.number,
+    selectedMessage: PropTypes.number
   };
 
   componentWillMount() {
@@ -29,10 +31,16 @@ class AddAgendaPoint extends Component {
     const { goBack } = this.props.navigation;
 
     goBack();
-  };
+  }
 
   render() {
-    let body = <AddAgendaPointForm onConfirm={this.handleAgendaForm.bind(this)} costumerId={0} />;
+    let body = (
+      <AddAgendaPointForm
+        onConfirm={this.handleAgendaForm.bind(this)}
+        costumerId={this.props.selectedPatient}
+        messageId={this.props.selectedMessage}
+      />
+    );
     if (this.props.isFetching) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
@@ -56,15 +64,11 @@ class AddAgendaPoint extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const profilesData = state.rementis.profiles;
-  const isFetching = state.rementis.isFetching;
-
-  return {
-    profilesData,
-    isFetching
-  };
-};
+const mapStateToProps = state => ({
+  isFetching: state.rementis.isFetching,
+  selectedPatient: state.selects.patientSelected,
+  selectedMessage: state.selects.messageSelected
+});
 
 //export default Contacts;
 export default connect(mapStateToProps)(AddAgendaPoint);
