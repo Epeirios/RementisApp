@@ -8,6 +8,7 @@ import { getProfileData } from "../actions/rementis";
 
 import { Profile } from "../components/Profile";
 import { AddAgendaPointForm } from "../components/AddAgendaPointForm";
+import { getSelected } from "../actions/selects";
 
 const GLOBAL = require("../config/Globals");
 
@@ -25,15 +26,16 @@ class AddAgendaPoint extends Component {
 
   componentWillMount() {
     this.props.dispatch(getProfileData());
+    this.props.dispatch(getSelected());
   };
 
   handleAgendaForm() {
-    const { goBack } = this.props.navigation;
-
-    goBack();
+    this.props.navigation.navigate("ContactAgendaFeed");
   };
 
   render() {
+    console.log("2 message: " + this.props.selectedMessage)
+
     let body = (
       <AddAgendaPointForm
         onConfirm={this.handleAgendaForm.bind(this)}

@@ -11,7 +11,6 @@ import styles from "./styles";
 import { Circle } from "../Circle/index";
 import Icon from "react-native-vector-icons/Ionicons";
 import { TextBox } from "../TextBox";
-import { Item } from "../Item";
 
 const GLOBAL = require("../../config/Globals");
 

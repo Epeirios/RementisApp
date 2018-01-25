@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, Text, Image, TouchableHighlight } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-
 import { Avatar } from "react-native-elements";
-
 import styles from "./styles";
-
 import { Circle } from "../Circle";
 import TextBox from "../TextBox/TextBox";
-
 import { agendaPointStatesEnum } from "../../enums";
+
+import { setSelectedPatient } from "../../actions/selects";
+import { connect } from "react-redux";
 
 const GLOBAL = require("../../config/Globals");
 
@@ -32,10 +31,13 @@ const GetStatusCount = (array, state) => {
 };
 
 class ContactListItem extends Component {
-  render() {
-    const { firstName, lastName, profilePic, items } = this.props.contact;
+  handleButtonPress(patientId){
+    this.props.dispatch(setSelectedPatient(patientId));
+    this.props.onPress();
+  }
 
-    console.log(JSON.stringify(items));
+  render() {
+    const { firstName, lastName, profilePic, items, patientId } = this.props.contact;
 
     return (
       <View style={styles.container}>
@@ -47,6 +49,7 @@ class ContactListItem extends Component {
               source={profilePic}
             />
           </View>
+
           <View style={styles.detailsContainer}>
             <View style={styles.textContainer}>
               <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
@@ -74,12 +77,13 @@ class ContactListItem extends Component {
               </TextBox>
             </View>
           </View>
+
           <View style={styles.selectorContainer}>
             <Avatar
               small
               rounded
               icon={{name: "arrow-forward"}}
-              onPress={() => console.log("Works!")}
+              onPress={() => {this.handleButtonPress(patientId)}}
               activeOpacity={0.7}
             />
           </View>
@@ -89,4 +93,4 @@ class ContactListItem extends Component {
   }
 }
 
-export default ContactListItem;
+export default connect()(ContactListItem);

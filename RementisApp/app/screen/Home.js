@@ -26,27 +26,9 @@ class Home extends Component {
             icon: "md-menu",
             label: "feed",
             onPress: () => {
-              this.props.navigation.navigate("Feed");
-            }
-          },
-          {
-            label: "demo",
-            onPress: () => {
-              this.props.navigation.navigate("DemoApi");
-            }
-          },
-          {
-            label: "Contacten",
-            onPress: () => {
               this.props.navigation.navigate("Contacts");
             }
           },
-          {
-            label: "AddAgendaPoint",
-            onPress: () => {
-              this.props.navigation.navigate("AddAgendaPoint");
-            }
-          }
         ]}
       >
         <TextBox fontColor={GLOBAL.COLOR.WHITE}>

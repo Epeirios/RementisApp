@@ -15,18 +15,6 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import styles from "./styles";
 
 class AddAgendaPointForm extends Component {
-  state = {
-    isStartTimePickerVisible: false,
-    isEndTimePickerVisible: false,
-    startTime: "",
-    endTime: "",
-    isImportant: false,
-    title: "",
-    description: "",
-    startDate: "",
-    endDate: ""
-  };
-
   static propTypes = {
     costumerId: PropTypes.number,
     messageId: PropTypes.number
@@ -34,6 +22,27 @@ class AddAgendaPointForm extends Component {
 
   componentWillMount() {
     this._setDate();
+    this._resetFields();
+    this._setup();
+  }
+
+  _setup() {
+    if (this.props.messageId !== -1) {
+      this.setState({
+        isStartTimePickerVisible: false,
+        isEndTimePickerVisible: false,
+        startTime: "",
+        endTime: "",
+        isImportant: false,
+        title: "",
+        description: "",
+        startDate: "",
+        endDate: ""
+      });
+
+      this.inputTitle.clearText();
+      this.inputDesc.clearText();
+    }
   }
 
   _showStartTimePicker = () => {
@@ -78,7 +87,7 @@ class AddAgendaPointForm extends Component {
       return;
     }
 
-    if(this.props.messageId !== -1){
+    if (this.props.messageId !== -1) {
       //method = "PUT"
     }
 
@@ -151,6 +160,14 @@ class AddAgendaPointForm extends Component {
     this.inputDesc.clearText();
   };
   render() {
+    let buttonTitle = "Toevoegen";
+
+    if (this.props.messageId != -1) {
+      buttonTitle = "Aanpassen";
+    }
+
+    console.log("messageId: " + this.props.messageId);
+
     return (
       <View>
         <FormLabel labelStyle={styles.text}>Titel</FormLabel>
@@ -205,7 +222,7 @@ class AddAgendaPointForm extends Component {
         <Button
           buttonStyle={styles.button}
           color={"#2196F3"}
-          title="Toevoegen"
+          title={buttonTitle}
           onPress={this._handleButtonPress}
           rounded={true}
         />

@@ -7,9 +7,11 @@ export const getSelected = () => ({
 });
 
 export const setSelectedPatient = patient => ({
-  type: SET_SELECTED_PATIENT
+  type: SET_SELECTED_PATIENT,
+  patient
 });
 
 export const setSelectedMessage = message => ({
-  type: SET_SELECTED_MESSAGE
+  type: SET_SELECTED_MESSAGE,
+  message
 });

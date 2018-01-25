@@ -10,17 +10,23 @@ class ContactList extends Component {
   renderItem(item, idx) {
     return (
       <View key={idx}>
-        <ContactListItem contact={item} />
+        <ContactListItem contact={item} onPress={onPress} />
       </View>
     );
   }
 
   render() {
-    const { contacts } = this.props;
+    const { contacts, onPress } = this.props;
 
     return (
       <View style={styles.listContainer}>
-        {contacts.map(this.renderItem)}
+        {contacts.map((item, idx) => {        
+          return (
+            <View key={idx}>
+              <ContactListItem contact={item} onPress={onPress} />
+            </View>
+          );
+        })}
       </View>
     );
   }

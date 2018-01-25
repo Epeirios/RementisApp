@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
             return{
                 ...state
             }
-        case SET_SELECTED_MESSAGE:
+        case SET_SELECTED_PATIENT:
             return {
                 ...state,
                 patientSelected: action.patient
