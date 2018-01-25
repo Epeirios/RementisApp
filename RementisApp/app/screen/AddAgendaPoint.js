@@ -34,8 +34,6 @@ class AddAgendaPoint extends Component {
   };
 
   render() {
-    console.log("2 message: " + this.props.selectedMessage)
-
     let body = (
       <AddAgendaPointForm
         onConfirm={this.handleAgendaForm.bind(this)}
@@ -65,6 +63,16 @@ class AddAgendaPoint extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const profilesData = state.rementis.profiles;
+  const isFetching = state.rementis.isFetching;
+
+  return {
+    profilesData,
+    isFetching
+  };
+};
 
 const mapStateToProps = state => ({
   isFetching: state.rementis.isFetching,

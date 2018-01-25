@@ -33,8 +33,8 @@ const STATUS_FONTSIZE = 30;
 const TEXTCOLOR = GLOBAL.COLOR.GREYBLUE;
 
 class AgendaItem extends Component {
-  handleBrushButton(patientId) {
-    this.props.dispatch(setSelectedMessage(patientId));
+  handleBrushButton(messageId) {
+    this.props.dispatch(setSelectedMessage(messageId));
     this.props.onPress();
   }
 
@@ -92,7 +92,7 @@ class AgendaItem extends Component {
               overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.BLUE }}
               icon={{ name: "brush", color: GLOBAL.COLOR.WHITE }}
               onPress={() => {
-                this.handleBrushButton(patientId);
+                this.handleBrushButton(messageId);
               }}
               activeOpacity={0.7}
             />

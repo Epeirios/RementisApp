@@ -10,7 +10,10 @@ import {
   Button,
   Divider
 } from "react-native-elements";
+
 import DateTimePicker from "react-native-modal-datetime-picker";
+import { connect } from "react-redux";
+import { getProfileData } from "../../actions/rementis";
 
 import styles from "./styles";
 
@@ -21,27 +24,59 @@ class AddAgendaPointForm extends Component {
   };
 
   componentWillMount() {
+    this.props.dispatch(getProfileData());
     this._setDate();
+  }
+
+  componentDidMount() {
     this._resetFields();
     this._setup();
   }
 
+  getAgendaItem() {
+    const profiles = this.props.profileData;
+
+    console.log("profiles: " + profiles);
+
+    let profile;
+    let item;
+
+    profiles.forEach(element => {
+      if (element["costumerId"] === this.props.patientId) {
+        profile = element;
+        console.log("profile: " + profile);
+      }
+
+      if (profile != "undefined") {
+        profile["items"].forEach(subelement => {
+          if (subelement["messageId"] === this.props.messageId) {
+            item = subelement;
+          }
+        });
+      }
+    });
+
+    console.log("item: " + JSON.stringify(item));
+
+    return item;
+  }
+
   _setup() {
+    console.log("test");
     if (this.props.messageId !== -1) {
+      const item = this.getAgendaItem();
+
       this.setState({
         isStartTimePickerVisible: false,
         isEndTimePickerVisible: false,
-        startTime: "",
-        endTime: "",
-        isImportant: false,
-        title: "",
-        description: "",
-        startDate: "",
-        endDate: ""
+        startTime: item.startTime,
+        endTime: item.endTime,
+        isImportant: item.priority,
+        title: item.title,
+        description: item.description,
+        startDate: item.startDate,
+        endDate: item.endDate
       });
-
-      this.inputTitle.clearText();
-      this.inputDesc.clearText();
     }
   }
 
@@ -231,4 +266,8 @@ class AddAgendaPointForm extends Component {
   }
 }
 
-export default AddAgendaPointForm;
+const mapStateToProps = state => ({
+  profilesData: state.rementis.profiles
+});
+
+export default connect(mapStateToProps)(AddAgendaPointForm);
