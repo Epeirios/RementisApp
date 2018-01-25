@@ -1,5 +1,7 @@
 import { GET_PROFILE_DATA } from "../actions/rementis";
 
+import { agendaPointStatesEnum } from "../enums";
+
 const initialState = {
   isFetching: false,
   profiles: [
@@ -20,7 +22,7 @@ const initialState = {
           startTime: "11:00",
           endTime: "11:00",
           priority: true,
-          state: "failed"
+          state: agendaPointStatesEnum.failed
         },
         {
           messageId: 2,
@@ -32,7 +34,7 @@ const initialState = {
           startTime: "12:00",
           endTime: "14:00",
           priority: false,
-          state: "pending"
+          state: agendaPointStatesEnum.pending
         },
         {
           messageId: 3,
@@ -44,7 +46,7 @@ const initialState = {
           startTime: "16:00",
           endTime: "16:30",
           priority: false,
-          state: "completed"
+          state: agendaPointStatesEnum.completed
         }
       ]
     },
@@ -65,7 +67,7 @@ const initialState = {
           startTime: "13:00",
           endTime: "13:00",
           priority: false,
-          state: "good"
+          state: agendaPointStatesEnum.completed
         }
       ]
     }

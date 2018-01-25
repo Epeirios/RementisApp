@@ -25,13 +25,13 @@ class AddAgendaPoint extends Component {
 
   componentWillMount() {
     this.props.dispatch(getProfileData());
-  }
+  };
 
   handleAgendaForm() {
     const { goBack } = this.props.navigation;
 
     goBack();
-  }
+  };
 
   render() {
     let body = (

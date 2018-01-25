@@ -10,7 +10,7 @@ class ContactList extends Component {
   renderItem(item, idx) {
     return (
       <View key={idx}>
-        <ContactListItem />
+        <ContactListItem contact={item} />
       </View>
     );
   }
@@ -18,7 +18,11 @@ class ContactList extends Component {
   render() {
     const { contacts } = this.props;
 
-    return <View style={styles.listContainer}>{contacts.map(this.renderItem)}</View>;
+    return (
+      <View style={styles.listContainer}>
+        {contacts.map(this.renderItem)}
+      </View>
+    );
   }
 }
 
