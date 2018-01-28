@@ -61,7 +61,7 @@ const initialState = {
           messageId: 4,
           title: "Medicatie slikken",
           customerId: 2,
-          description: "Met Truus bellen over het kampioenschap bridgen",
+          description: "4 cl morfine",
           startDate: "12-01-2018",
           endDate: "12-01-2018",
           startTime: "13:00",

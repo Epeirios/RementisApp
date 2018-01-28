@@ -6,8 +6,7 @@ const CONTAINERHEIGHT = 120;
 const PADDING = 5;
 
 export default EStyleSheet.create({
-  container: {
-  },
+  container: {},
   itemContainer: {
     padding: PADDING,
     backgroundColor: GLOBAL.COLOR.WHITE,
@@ -17,21 +16,29 @@ export default EStyleSheet.create({
     marginBottom: PADDING
   },
   statusContainer: {
-    width: "15%",    
+    width: "15%",
     alignItems: "flex-start",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   detailsContainer: {
-    width: "70%",
+    width: "80%"
   },
   crudContainer: {
-    width: "15%",
     padding: PADDING,
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     flexDirection: "row",
+    width: "20%"
   },
-  textContainer: {
-    
+  textContainer: {},
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  bodyContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
   }
 });

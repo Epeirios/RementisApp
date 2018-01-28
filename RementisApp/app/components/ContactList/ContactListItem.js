@@ -80,9 +80,10 @@ class ContactListItem extends Component {
 
           <View style={styles.selectorContainer}>
             <Avatar
-              small
+              medium
               rounded
-              icon={{name: "arrow-forward"}}
+              overlayContainerStyle={{backgroundColor: GLOBAL.COLOR.WHITE}}
+              icon={{name: "arrow-forward", color: GLOBAL.COLOR.GREYBLUE}}
               onPress={() => {this.handleButtonPress(customerId)}}
               activeOpacity={0.7}
             />

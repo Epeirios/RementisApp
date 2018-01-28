@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Alert } from "react-native";
 
 import styles from "./styles";
 import { Circle } from "../Circle";
@@ -13,20 +13,9 @@ import { connect } from "react-redux";
 
 import { Avatar } from "react-native-elements";
 
-const GLOBAL = require("../../config/Globals");
+import { Panel } from "../../components/Panel";
 
-const temp = {
-  messageId: 4,
-  title: "Medicatie innemen",
-  patientId: 2,
-  description: "Met Truus bellen over het kampioenschap bridgen",
-  startDate: "12-01-2018",
-  endDate: "12-01-2018",
-  startTime: "13:00",
-  endTime: "13:00",
-  priority: false,
-  state: agendaPointStatesEnum.completed
-};
+const GLOBAL = require("../../config/Globals");
 
 const TITLE_FONTSIZE = 18;
 const FONTSIZE = 12;
@@ -52,6 +41,27 @@ class AgendaItem extends Component {
 
     this.props.onPress();
   }
+
+  handleCloseButton(){
+    Alert.alert(
+      "Verwijder Agenda Punt",
+      "Weet je zeker dat je het wilt verwijderen?",
+      [
+        {
+          text: "Ja",
+          onPress: () => console.log("Ask me later pressed")
+        },
+        {
+          text: "Nee",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+      ],
+      { cancelable: true }
+    );
+  }
+
+  
 
   render() {
     const {
@@ -87,39 +97,49 @@ class AgendaItem extends Component {
         statusContainer = <View />;
     }
 
+    let header;
+
+    header = (
+      <View style={styles.headerContainer}>
+        {statusContainer}
+        <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
+          {title}
+        </TextBox>
+      </View>
+    );
+
     return (
       <View style={styles.container}>
         <View style={styles.itemContainer}>
-          <View style={styles.statusContainer}>{statusContainer}</View>
-
-          <View style={styles.detailsContainer}>
-            <View style={styles.textContainer}>
-              <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
-                {title}
-              </TextBox>
+          <Panel title={title} header={header}>
+            <View style={styles.bodyContainer}>
+              <View style={styles.detailsContainer}>
+                <TextBox fontSize={FONTSIZE} fontColor={TEXTCOLOR} numberOfLine={4}>
+                  {description}
+                </TextBox>
+              </View>
+              <View style={styles.crudContainer}>
+                <Avatar
+                  small
+                  rounded
+                  overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.BLUE }}
+                  icon={{ name: "brush", color: GLOBAL.COLOR.WHITE }}
+                  onPress={() => {
+                    this.handleBrushButton(this.props.item);
+                  }}
+                  activeOpacity={0.7}
+                />
+                <Avatar
+                  small
+                  rounded
+                  overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.RED }}
+                  icon={{ name: "close", color: GLOBAL.COLOR.WHITE }}
+                  onPress={() => this.handleCloseButton()}
+                  activeOpacity={0.7}
+                />
+              </View>
             </View>
-          </View>
-
-          <View style={styles.crudContainer}>
-            <Avatar
-              small
-              rounded
-              overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.BLUE }}
-              icon={{ name: "brush", color: GLOBAL.COLOR.WHITE }}
-              onPress={() => {
-                this.handleBrushButton(this.props.item);
-              }}
-              activeOpacity={0.7}
-            />
-            <Avatar
-              small
-              rounded
-              overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.RED }}
-              icon={{ name: "close", color: GLOBAL.COLOR.WHITE }}
-              onPress={() => console.log("close")}
-              activeOpacity={0.7}
-            />
-          </View>
+          </Panel>
         </View>
       </View>
     );
