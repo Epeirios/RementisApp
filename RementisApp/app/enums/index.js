@@ -1,3 +1,4 @@
 import agendaPointStatesEnum from "./agendaPointStates";
+import gendersEnum from "./genders";
 
-export { agendaPointStatesEnum };
+export { agendaPointStatesEnum, gendersEnum };

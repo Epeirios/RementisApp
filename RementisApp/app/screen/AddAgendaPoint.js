@@ -64,16 +64,6 @@ class AddAgendaPoint extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const profilesData = state.rementis.profiles;
-  const isFetching = state.rementis.isFetching;
-
-  return {
-    profilesData,
-    isFetching
-  };
-};
-
 const mapStateToProps = state => ({
   isFetching: state.rementis.isFetching,
   selectedPatient: state.selects.patientSelected,

@@ -37,7 +37,7 @@ class ContactListItem extends Component {
   }
 
   render() {
-    const { firstName, lastName, profilePic, items, patientId } = this.props.contact;
+    const { voornaam, achternaam, profilePic, items, customerId } = this.props.contact;
 
     return (
       <View style={styles.container}>
@@ -53,7 +53,7 @@ class ContactListItem extends Component {
           <View style={styles.detailsContainer}>
             <View style={styles.textContainer}>
               <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
-                {`${firstName} ${lastName}`}
+                {`${voornaam} ${achternaam}`}
               </TextBox>
             </View>
             <View style={styles.statusContainer}>
@@ -83,7 +83,7 @@ class ContactListItem extends Component {
               small
               rounded
               icon={{name: "arrow-forward"}}
-              onPress={() => {this.handleButtonPress(patientId)}}
+              onPress={() => {this.handleButtonPress(customerId)}}
               activeOpacity={0.7}
             />
           </View>

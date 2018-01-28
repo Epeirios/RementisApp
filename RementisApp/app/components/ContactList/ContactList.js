@@ -7,14 +7,6 @@ import ContactListItem from "./ContactListItem";
 import styles from "./styles";
 
 class ContactList extends Component {
-  renderItem(item, idx) {
-    return (
-      <View key={idx}>
-        <ContactListItem contact={item} onPress={onPress} />
-      </View>
-    );
-  }
-
   render() {
     const { contacts, onPress } = this.props;
 

@@ -14,6 +14,14 @@ import {
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { connect } from "react-redux";
 import { getProfileData } from "../../actions/rementis";
+import { 
+  toggleAgendaFormImportant,
+  setAgendaFormTitle,
+  setAgendaFormDescription,
+  setAgendaFormStartTime,
+  setAgendaFormEndTime,
+  clearAgendaForm
+ } from "../../actions/agendaForm";
 
 import styles from "./styles";
 
@@ -25,59 +33,10 @@ class AddAgendaPointForm extends Component {
 
   componentWillMount() {
     this.props.dispatch(getProfileData());
-    this._setDate();
-  }
-
-  componentDidMount() {
-    this._resetFields();
-    this._setup();
-  }
-
-  getAgendaItem() {
-    const profiles = this.props.profileData;
-
-    console.log("profiles: " + profiles);
-
-    let profile;
-    let item;
-
-    profiles.forEach(element => {
-      if (element["costumerId"] === this.props.patientId) {
-        profile = element;
-        console.log("profile: " + profile);
-      }
-
-      if (profile != "undefined") {
-        profile["items"].forEach(subelement => {
-          if (subelement["messageId"] === this.props.messageId) {
-            item = subelement;
-          }
-        });
-      }
-    });
-
-    console.log("item: " + JSON.stringify(item));
-
-    return item;
-  }
-
-  _setup() {
-    console.log("test");
-    if (this.props.messageId !== -1) {
-      const item = this.getAgendaItem();
-
-      this.setState({
-        isStartTimePickerVisible: false,
-        isEndTimePickerVisible: false,
-        startTime: item.startTime,
-        endTime: item.endTime,
-        isImportant: item.priority,
-        title: item.title,
-        description: item.description,
-        startDate: item.startDate,
-        endDate: item.endDate
-      });
-    }
+    this.setState({
+      isStartTimePickerVisible: false,
+      isEndTimePickerVisible: false
+    })
   }
 
   _showStartTimePicker = () => {
@@ -99,7 +58,7 @@ class AddAgendaPointForm extends Component {
     time = date.toString();
     time = time.slice(16, 24);
 
-    this.setState({ startTime: time });
+    this.props.dispatch(setAgendaFormStartTime(time));
     this._hideStartTimePicker();
   };
 
@@ -107,12 +66,12 @@ class AddAgendaPointForm extends Component {
     time = date.toString();
     time = time.slice(16, 24);
 
-    this.setState({ endTime: time });
+    this.props.dispatch(setAgendaFormEndTime(time));
     this._hideEndTimePicker();
   };
 
   _handleCheckBox = () => {
-    this.setState({ isImportant: !this.state.isImportant });
+    this.props.dispatch(toggleAgendaFormImportant());
   };
 
   _handleButtonPress = () => {
@@ -127,23 +86,8 @@ class AddAgendaPointForm extends Component {
     }
 
     this._sendAgendaItem(method);
-    this._resetFields();
+    this.props.dispatch(clearAgendaForm());
     this.props.onConfirm();
-  };
-
-  _setDate = () => {
-    const today = new Date();
-    date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
-
-    this.setState({
-      startDate: date,
-      endDate: date
-    });
   };
 
   _sendAgendaItem = method => {
@@ -166,34 +110,18 @@ class AddAgendaPointForm extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        Titel: this.state.title,
-        CostumerId: this.props.costumerId,
-        Description: this.state.description,
-        StartDate: this.state.startDate,
-        EndDate: this.state.endDate,
-        StartTime: this.state.startTime,
-        EndTime: this.state.startTime,
-        Priority: this.state.isImportant
+        Titel: this.props.agendaForm.title,
+        CostumerId: this.props.messageId,
+        Description: this.props.agendaForm.description,
+        StartDate: this.props.agendaForm.startDate,
+        EndDate: this.props.agendaForm.endDate,
+        StartTime: this.props.agendaForm.startTime,
+        EndTime: this.props.agendaForm.startTime,
+        Priority: this.props.agendaForm.isImportant
       })
     });
   };
 
-  _resetFields = () => {
-    this.setState({
-      isStartTimePickerVisible: false,
-      isEndTimePickerVisible: false,
-      startTime: "",
-      endTime: "",
-      isImportant: false,
-      title: "",
-      description: "",
-      startDate: "",
-      endDate: ""
-    });
-
-    this.inputTitle.clearText();
-    this.inputDesc.clearText();
-  };
   render() {
     let buttonTitle = "Toevoegen";
 
@@ -201,42 +129,43 @@ class AddAgendaPointForm extends Component {
       buttonTitle = "Aanpassen";
     }
 
-    console.log("messageId: " + this.props.messageId);
-
     return (
       <View>
         <FormLabel labelStyle={styles.text}>Titel</FormLabel>
         <FormInput
           inputStyle={styles.text}
-          onChangeText={title => this.setState({ title: title })}
+          onChangeText={title => this.props.dispatch(setAgendaFormTitle(title))}
           ref={inputTitle => (this.inputTitle = inputTitle)}
+          value={this.props.agendaForm.title}
         />
         <FormLabel labelStyle={styles.text}>Beschrijving</FormLabel>
         <FormInput
           inputStyle={styles.text}
           onChangeText={description =>
-            this.setState({ description: description })
+            this.props.dispatch(setAgendaFormDescription(description))
           }
           multiline={true}
           ref={inputDesc => (this.inputDesc = inputDesc)}
+          value={this.props.agendaForm.description}
         />
         <FormLabel labelStyle={styles.text}>Start Tijd</FormLabel>
         <FormInput
           inputStyle={styles.text}
           onFocus={this._showStartTimePicker}
-          value={this.state.startTime}
+          value={this.props.agendaForm.startTime}
         />
         <FormLabel labelStyle={styles.text}>Eind Tijd</FormLabel>
         <FormInput
           inputStyle={styles.text}
           onFocus={this._showEndTimePicker}
-          value={this.state.endTime}
+          value={this.props.agendaForm.endTime}
         />
         <FormLabel labelStyle={styles.text}>Prioriteit</FormLabel>
         <CheckBox
           title="Belangrijk"
-          checked={this.state.isImportant}
+          checked={this.props.agendaForm.priority}
           onPress={this._handleCheckBox}
+          value={this.props.agendaForm.priority}
         />
 
         <DateTimePicker
@@ -267,7 +196,7 @@ class AddAgendaPointForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  profilesData: state.rementis.profiles
+  agendaForm: state.agendaForm,
 });
 
 export default connect(mapStateToProps)(AddAgendaPointForm);

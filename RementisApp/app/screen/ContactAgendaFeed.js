@@ -16,6 +16,7 @@ import { getProfileData } from "../actions/rementis";
 
 import { ContactAgenda } from "../components/ContactAgenda";
 import { getSelected, setSelectedMessage } from "../actions/selects";
+import { clearAgendaForm } from "../actions/agendaForm";
 
 import { Avatar } from "react-native-elements";
 
@@ -48,7 +49,7 @@ class ContactAgendaFeed extends Component {
     }
 
     profilesData.forEach(element => {
-      if (element["patientId"] === profileId) {
+      if (element["customerId"] === profileId) {
         profile = element;
       }
     });
@@ -58,6 +59,7 @@ class ContactAgendaFeed extends Component {
 
   handleAddAgendaPointButtonPress() {
     this.props.dispatch(setSelectedMessage(-1));
+    this.props.dispatch(clearAgendaForm());
     this.props.navigation.navigate("AddAgendaPoint");
   }
 

@@ -8,6 +8,7 @@ import { TextBox } from "../TextBox";
 import { agendaPointStatesEnum } from "../../enums";
 
 import { setSelectedMessage } from "../../actions/selects";
+import { setAgendaForm } from "../../actions/agendaForm";
 import { connect } from "react-redux";
 
 import { Avatar } from "react-native-elements";
@@ -33,8 +34,22 @@ const STATUS_FONTSIZE = 30;
 const TEXTCOLOR = GLOBAL.COLOR.GREYBLUE;
 
 class AgendaItem extends Component {
-  handleBrushButton(messageId) {
-    this.props.dispatch(setSelectedMessage(messageId));
+  handleBrushButton(item) {
+    this.props.dispatch(setSelectedMessage(item.messageId));
+    this.props.dispatch(
+      setAgendaForm({
+        title: item.title,
+        description: item.description,
+        startDate: item.startDate,
+        endDate: item.endDate,
+        startTime: item.startTime,
+        endTime: item.endTime,
+        priority: item.priority
+      })
+    );
+
+    console.log("item", JSON.stringify(item));
+
     this.props.onPress();
   }
 
@@ -42,7 +57,7 @@ class AgendaItem extends Component {
     const {
       messageId,
       title,
-      patientId,
+      customerId,
       description,
       startDate,
       endDate,
@@ -92,7 +107,7 @@ class AgendaItem extends Component {
               overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.BLUE }}
               icon={{ name: "brush", color: GLOBAL.COLOR.WHITE }}
               onPress={() => {
-                this.handleBrushButton(messageId);
+                this.handleBrushButton(this.props.item);
               }}
               activeOpacity={0.7}
             />
