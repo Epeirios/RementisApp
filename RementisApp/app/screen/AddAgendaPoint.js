@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { ScreenTemplate } from "../components/ScreenTemplate";
 import { getProfileData } from "../actions/rementis";
 
-import { Profile } from "../components/Profile";
 import { AddAgendaPointForm } from "../components/AddAgendaPointForm";
 import { getSelected } from "../actions/selects";
 
@@ -19,19 +18,17 @@ class AddAgendaPoint extends Component {
 
   static propTypes = {
     navigation: PropTypes.object,
-    isFetching: PropTypes.bool,
-    selectedPatient: PropTypes.number,
-    selectedMessage: PropTypes.number
+    isFetching: PropTypes.bool
   };
 
   componentWillMount() {
     this.props.dispatch(getProfileData());
     this.props.dispatch(getSelected());
-  };
+  }
 
   handleAgendaForm() {
     this.props.navigation.navigate("ContactAgendaFeed");
-  };
+  }
 
   render() {
     let body = (
@@ -67,7 +64,7 @@ class AddAgendaPoint extends Component {
 const mapStateToProps = state => ({
   isFetching: state.rementis.isFetching,
   selectedPatient: state.selects.patientSelected,
-  selectedMessage: state.selects.messageSelected
+  selectedMessage: state.selects.messageSelected,
 });
 
 //export default Contacts;

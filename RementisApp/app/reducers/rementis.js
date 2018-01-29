@@ -2,6 +2,57 @@ import { GET_PROFILE_DATA } from "../actions/rementis";
 
 import { agendaPointStatesEnum } from "../enums";
 
+const temp = {
+  isFetching: false,
+  profiles: [
+    {
+      customerId: 1,
+      firstName: "Herbert",
+      lastName: "Kartoffelsalat",
+      gender: "male",
+      agenda: [
+        {
+          date: "01/29/2018",
+          items: [
+            {
+              messageId: 1,
+              title: "Medicatie innemen",
+              description: "Neem 5 paracetamol en 2 ibuprofen",
+              startTime: "11:00",
+              endTime: "12:00",
+              priority: true,
+              state: agendaPointStatesEnum.completed
+            },
+            {
+              messageId: 2,
+              title: "truus bellen",
+              description: "bridge kampioenschap",
+              startTime: "14:00",
+              endTime: "14:00",
+              priority: false,
+              state: agendaPointStatesEnum.failed
+            },
+          ]
+        },
+        {
+          date: "01/28/2018",
+          items: [
+            {
+              messageId: 3,
+              title: "Medicatie innemen",
+              description: "Neem 5 paracetamol en 2 ibuprofen",
+              startTime: "11:00",
+              endTime: "12:00",
+              priority: true,
+              state: agendaPointStatesEnum.pending
+            },
+          ]
+        },
+      ]
+    }
+  ]
+};
+
 const initialState = {
   isFetching: false,
   profiles: [
@@ -47,7 +98,19 @@ const initialState = {
           endTime: "16:30",
           priority: false,
           state: agendaPointStatesEnum.completed
-        }
+        },
+        {
+          messageId: 5,
+          title: "darryl",
+          customerId: 1,
+          description: "Neem 5 paracetamol en 2 ibuprofen",
+          startDate: "12-01-2018",
+          endDate: "12-01-2018",
+          startTime: "11:00",
+          endTime: "11:00",
+          priority: true,
+          state: agendaPointStatesEnum.failed
+        },
       ]
     },
     {
@@ -74,7 +137,7 @@ const initialState = {
   ]
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = temp, action) => {
   switch (action.type) {
     case GET_PROFILE_DATA:
       return {

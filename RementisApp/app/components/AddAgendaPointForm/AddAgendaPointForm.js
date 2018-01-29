@@ -14,29 +14,24 @@ import {
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { connect } from "react-redux";
 import { getProfileData } from "../../actions/rementis";
-import { 
+import {
   toggleAgendaFormImportant,
   setAgendaFormTitle,
   setAgendaFormDescription,
   setAgendaFormStartTime,
   setAgendaFormEndTime,
   clearAgendaForm
- } from "../../actions/agendaForm";
+} from "../../actions/agendaForm";
 
 import styles from "./styles";
 
 class AddAgendaPointForm extends Component {
-  static propTypes = {
-    costumerId: PropTypes.number,
-    messageId: PropTypes.number
-  };
-
   componentWillMount() {
     this.props.dispatch(getProfileData());
     this.setState({
       isStartTimePickerVisible: false,
       isEndTimePickerVisible: false
-    })
+    });
   }
 
   _showStartTimePicker = () => {
@@ -82,7 +77,7 @@ class AddAgendaPointForm extends Component {
     }
 
     if (this.props.messageId !== -1) {
-      //method = "PUT"
+      method = "PUT";
     }
 
     this._sendAgendaItem(method);
@@ -92,14 +87,25 @@ class AddAgendaPointForm extends Component {
 
   _sendAgendaItem = method => {
     let url;
+    let body;
 
     switch (method) {
       case "POST":
-        url = "https://rementisapi.azurewebsites.net/agendaitem";
+        url = "http://rementisapi.azurewebsites.net/api/Agendadata";
+        body = JSON.stringify({
+          title: this.props.agendaForm.title,
+          costumerId: this.props.patientSelected,
+          description: this.props.agendaForm.description,
+          startDate: this.props.agendaForm.startDate,
+          endDate: this.props.agendaForm.endDate,
+          startTime: this.props.agendaForm.startTime,
+          endTime: this.props.agendaForm.startTime,
+          priority: this.props.agendaForm.priority
+        });
         break;
-
-      default:
-        url = "https://rementisapi.azurewebsites.net/agendaitem";
+      case "PUT":
+        url = `http://rementisapi.azurewebsites.net/api/Agendadata/${messageId}`;
+        body = "";
         break;
     }
 
@@ -109,16 +115,7 @@ class AddAgendaPointForm extends Component {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        Titel: this.props.agendaForm.title,
-        CostumerId: this.props.messageId,
-        Description: this.props.agendaForm.description,
-        StartDate: this.props.agendaForm.startDate,
-        EndDate: this.props.agendaForm.endDate,
-        StartTime: this.props.agendaForm.startTime,
-        EndTime: this.props.agendaForm.startTime,
-        Priority: this.props.agendaForm.isImportant
-      })
+      body: body
     });
   };
 
@@ -197,6 +194,8 @@ class AddAgendaPointForm extends Component {
 
 const mapStateToProps = state => ({
   agendaForm: state.agendaForm,
+  messageSelected: state.selects.messageSelected,
+  patientSelected: state.selects.patientSelected
 });
 
 export default connect(mapStateToProps)(AddAgendaPointForm);

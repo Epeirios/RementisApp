@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 import { Container } from "../components/Container";
 import { Footer, Header } from "../components/Header&Footer";
 import { TextBox } from "../components/TextBox";
-import { Profile } from "../components/Profile";
 import { connect } from "react-redux";
 import { getProfileData } from "../actions/rementis";
 
@@ -36,7 +35,7 @@ class Feed extends Component {
   }
 
   render() {
-    let body = <Profile list={this.props.profilesData} />;
+    let body = <ActivityIndicator size="large" color="#fff" />;
     if (this.props.isFetching) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }

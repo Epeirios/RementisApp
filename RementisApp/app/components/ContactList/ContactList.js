@@ -8,14 +8,14 @@ import styles from "./styles";
 
 class ContactList extends Component {
   render() {
-    const { contacts, onPress } = this.props;
+    const { profiles, onPress } = this.props;
 
     return (
       <View style={styles.listContainer}>
-        {contacts.map((item, idx) => {        
+        {profiles.map((item, idx) => {
           return (
             <View key={idx}>
-              <ContactListItem contact={item} onPress={onPress} />
+              <ContactListItem profile={item} onPress={onPress} />
             </View>
           );
         })}

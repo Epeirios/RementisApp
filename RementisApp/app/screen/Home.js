@@ -10,8 +10,8 @@ const GLOBAL = require("../config/Globals");
 
 class Home extends Component {
   static navigationOptions = {
-    tabBarVisible: false,
-  }
+    tabBarVisible: false
+  };
 
   static propTypes = {
     navigation: PropTypes.object
@@ -28,13 +28,13 @@ class Home extends Component {
             onPress: () => {
               this.props.navigation.navigate("Contacts");
             }
-          },
+          }
         ]}
       >
-        <TextBox fontColor={GLOBAL.COLOR.WHITE}>
-          hallo allemaal test test
-        </TextBox>
-        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Heerlen</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Kevin Heugen</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Emiel Janssen</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Darryl Lemmens</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Christian Clermont</TextBox>
       </ScreenTemplate>
     );
   }

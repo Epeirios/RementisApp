@@ -39,10 +39,13 @@ class ContactAgendaFeed extends Component {
     this.props.dispatch(getSelected());
   }
 
-  getProfileItems(profileId) {
+  getAgendaItems(profileId, date) {
     const profilesData = this.props.profilesData;
 
-    let profile;
+    console.log("date", date);
+
+    let items = [];
+    let agenda = [];
 
     if (profileId === -1) {
       return [];
@@ -50,11 +53,21 @@ class ContactAgendaFeed extends Component {
 
     profilesData.forEach(element => {
       if (element["customerId"] === profileId) {
-        profile = element;
+        agenda = element["agenda"];
       }
     });
 
-    return profile["items"];
+    console.log("agenda", agenda);
+
+    agenda.forEach(element => {
+      if (element["date"] === date) {
+        items = element["items"];
+      }
+    });
+
+    console.log("items", items);
+
+    return items;
   }
 
   handleAddAgendaPointButtonPress() {
@@ -70,8 +83,10 @@ class ContactAgendaFeed extends Component {
   render() {
     let body = (
       <ContactAgenda
-        agendaItems={this.getProfileItems(this.props.selectedPatient)}
-        costumerId={this.props.selectedPatient}
+        agendaItems={this.getAgendaItems(
+          this.props.selectedPatient,
+          this.props.dateSelected
+        )}
         onPress={() => {
           this.handleCrudButtonPress();
         }}
@@ -124,7 +139,8 @@ const mapStateToProps = state => ({
   profilesData: state.rementis.profiles,
   isFetching: state.rementis.isFetching,
   selectedPatient: state.selects.patientSelected,
-  selectedMessage: state.selects.messageSelected
+  selectedMessage: state.selects.messageSelected,
+  dateSelected: state.selects.dateSelected
 });
 
 export default connect(mapStateToProps)(ContactAgendaFeed);

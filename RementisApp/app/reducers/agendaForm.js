@@ -12,10 +12,10 @@ import {
 const initialState = {
   title: "",
   description: "",
-  startDate: "",
-  endDate: "",
-  startTime: "",
-  endTime: "",
+  startDate: "1991-01-01T00:00:00",
+  endDate: "1991-01-01T00:00:00",
+  startTime: "00:00:00",
+  endTime: "00:00:00",
   priority: false
 };
 

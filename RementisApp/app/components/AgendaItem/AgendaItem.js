@@ -9,10 +9,11 @@ import { agendaPointStatesEnum } from "../../enums";
 
 import { setSelectedMessage } from "../../actions/selects";
 import { setAgendaForm } from "../../actions/agendaForm";
+import { getProfileData } from "../../actions/rementis";
+
 import { connect } from "react-redux";
 
 import { Avatar } from "react-native-elements";
-
 import { Panel } from "../../components/Panel";
 
 const GLOBAL = require("../../config/Globals");
@@ -37,31 +38,36 @@ class AgendaItem extends Component {
       })
     );
 
-    console.log("item", JSON.stringify(item));
-
     this.props.onPress();
   }
 
-  handleCloseButton(){
+  handleRemoveItem(messageId) {
+    let url = `http://rementisapi.azurewebsites.net/api/Agendadata/${messageId}`;
+
+    fetch(url, {
+      method: "DELETE"
+    });
+
+    this.props.dispatch(getProfileData());
+  }
+
+  handleCloseButton(messageId) {
     Alert.alert(
       "Verwijder Agenda Punt",
       "Weet je zeker dat je het wilt verwijderen?",
       [
         {
           text: "Ja",
-          onPress: () => console.log("Ask me later pressed")
+          onPress: () => this.handleRemoveItem(messageId)
         },
         {
           text: "Nee",
-          onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
-        },
+        }
       ],
       { cancelable: true }
     );
   }
-
-  
 
   render() {
     const {
@@ -114,7 +120,11 @@ class AgendaItem extends Component {
           <Panel title={title} header={header}>
             <View style={styles.bodyContainer}>
               <View style={styles.detailsContainer}>
-                <TextBox fontSize={FONTSIZE} fontColor={TEXTCOLOR} numberOfLine={4}>
+                <TextBox
+                  fontSize={FONTSIZE}
+                  fontColor={TEXTCOLOR}
+                  numberOfLine={4}
+                >
                   {description}
                 </TextBox>
               </View>
@@ -134,7 +144,7 @@ class AgendaItem extends Component {
                   rounded
                   overlayContainerStyle={{ backgroundColor: GLOBAL.COLOR.RED }}
                   icon={{ name: "close", color: GLOBAL.COLOR.WHITE }}
-                  onPress={() => this.handleCloseButton()}
+                  onPress={() => this.handleCloseButton(messageId)}
                   activeOpacity={0.7}
                 />
               </View>

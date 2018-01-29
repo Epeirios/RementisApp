@@ -32,7 +32,7 @@ class Contacts extends Component {
   render() {
     let body = (
       <ContactList
-        contacts={this.props.profilesData}
+        profiles={this.props.profilesData}
         onPress={this.handleOnPress.bind(this)}
       />
     );
