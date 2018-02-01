@@ -42,8 +42,6 @@ class ContactAgendaFeed extends Component {
   getAgendaItems(profileId, date) {
     const profilesData = this.props.profilesData;
 
-    console.log("date", date);
-
     let items = [];
     let agenda = [];
 
@@ -57,15 +55,11 @@ class ContactAgendaFeed extends Component {
       }
     });
 
-    console.log("agenda", agenda);
-
     agenda.forEach(element => {
       if (element["date"] === date) {
         items = element["items"];
       }
     });
-
-    console.log("items", items);
 
     return items;
   }
@@ -92,7 +86,7 @@ class ContactAgendaFeed extends Component {
         }}
       />
     );
-    if (this.props.isFetching) {
+    if (this.props.isFetching  === undefined) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 

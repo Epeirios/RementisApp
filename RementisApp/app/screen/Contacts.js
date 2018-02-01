@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { ScreenTemplate } from "../components/ScreenTemplate";
 import { getProfileData } from "../actions/rementis";
 
-import { Profile } from "../components/Profile";
 import { ContactList } from "../components/ContactList/index";
 
 const GLOBAL = require("../config/Globals");
@@ -36,7 +35,7 @@ class Contacts extends Component {
         onPress={this.handleOnPress.bind(this)}
       />
     );
-    if (this.props.isFetching) {
+    if (!this.props.isFetching === undefined) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 
@@ -59,15 +58,9 @@ class Contacts extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const profilesData = state.rementis.profiles;
-  const isFetching = state.rementis.isFetching;
+const mapStateToProps = state => ({
+  profilesData: state.rementis.profiles,
+  isFetching: state.rementis.isFetching
+});
 
-  return {
-    profilesData,
-    isFetching
-  };
-};
-
-//export default Contacts;
 export default connect(mapStateToProps)(Contacts);

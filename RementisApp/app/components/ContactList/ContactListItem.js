@@ -11,6 +11,8 @@ import { agendaPointStatesEnum, gendersEnum } from "../../enums";
 import { setSelectedPatient } from "../../actions/selects";
 import { connect } from "react-redux";
 
+import moment from "moment";
+
 const GLOBAL = require("../../config/Globals");
 
 const TITLE_FONTSIZE = 18;
@@ -36,6 +38,20 @@ class ContactListItem extends Component {
     this.props.onPress();
   }
 
+  getAgendaItems(date) {
+    const { agenda } = this.props.profile;
+
+    let items = [];
+
+    agenda.forEach(element => {
+      if (element["date"] === date) {
+        items = element["items"];
+      }
+    });
+
+    return items;
+  }
+
   render() {
     const {
       firstName,
@@ -50,6 +66,8 @@ class ContactListItem extends Component {
     if (gender === gendersEnum.female) {
       avatarPic = require("../../resources/images/oma1.jpg");
     }
+
+    let currentDate = moment().format("L");
 
     return (
       <View style={styles.container}>
@@ -70,18 +88,21 @@ class ContactListItem extends Component {
                 fontSize={STATUS_FONTSIZE}
                 fontColor={GLOBAL.COLOR.GREEN}
               >
-                {GetStatusCount(agenda[0].items, agendaPointStatesEnum.completed)}
+                {GetStatusCount(
+                  this.getAgendaItems(currentDate),
+                  agendaPointStatesEnum.completed
+                )}
               </TextBox>
               <Circle icon={"md-arrow-forward"} color={GLOBAL.COLOR.ORANGE} />
               <TextBox
                 fontSize={STATUS_FONTSIZE}
                 fontColor={GLOBAL.COLOR.ORANGE}
               >
-                {GetStatusCount(agenda[0].items, agendaPointStatesEnum.pending)}
+                {GetStatusCount(this.getAgendaItems(currentDate), agendaPointStatesEnum.pending)}
               </TextBox>
               <Circle icon={"md-close"} color={GLOBAL.COLOR.RED} />
               <TextBox fontSize={STATUS_FONTSIZE} fontColor={GLOBAL.COLOR.RED}>
-                {GetStatusCount(agenda[0].items, agendaPointStatesEnum.failed)}
+                {GetStatusCount(this.getAgendaItems(currentDate), agendaPointStatesEnum.failed)}
               </TextBox>
             </View>
           </View>

@@ -1,8 +1,13 @@
-import { GET_PROFILE_DATA } from "../actions/rementis";
+import {
+  GET_PROFILE_DATA,
+  GET_PROFILE_DATA_ERROR,
+  PROFILE_DATA
+} from "../actions/rementis";
 
 import { agendaPointStatesEnum } from "../enums";
 
 const temp = {
+  error: "noError",
   isFetching: false,
   profiles: [
     {
@@ -31,7 +36,7 @@ const temp = {
               endTime: "14:00",
               priority: false,
               state: agendaPointStatesEnum.failed
-            },
+            }
           ]
         },
         {
@@ -45,9 +50,9 @@ const temp = {
               endTime: "12:00",
               priority: true,
               state: agendaPointStatesEnum.pending
-            },
+            }
           ]
-        },
+        }
       ]
     }
   ]
@@ -110,7 +115,7 @@ const initialState = {
           endTime: "11:00",
           priority: true,
           state: agendaPointStatesEnum.failed
-        },
+        }
       ]
     },
     {
@@ -141,7 +146,19 @@ const reducer = (state = temp, action) => {
   switch (action.type) {
     case GET_PROFILE_DATA:
       return {
-        ...state
+        ...state,
+        isFetching: true
+      };
+    case GET_PROFILE_DATA_ERROR:
+      return {
+        ...state,
+        error: action.error
+      };
+    case PROFILE_DATA:
+      return {
+        ...state,
+        profiles: action.result.profile,
+        isFetching: false
       };
     default:
       return state;

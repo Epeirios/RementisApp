@@ -24,4 +24,15 @@ class ContactList extends Component {
   }
 }
 
+ContactList.PropTypes = {
+  profiles: PropTypes.array,
+  onPress: PropTypes.func,
+};
+
+ContactList.defaultProps = {
+  profiles: [],
+  onPress: ()=>{},
+};
+
+
 export default ContactList;

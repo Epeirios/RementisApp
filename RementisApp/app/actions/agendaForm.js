@@ -6,6 +6,7 @@ export const SET_AGENDA_FORM_TITLE = 'SET_AGENDA_FORM_TITLE';
 export const SET_AGENDA_FORM_DESCRIPTION = 'SET_AGENDA_FORM_DESCRIPTION';
 export const SET_AGENDA_FORM_STARTTIME = 'SET_AGENDA_FORM_STARTTIME';
 export const SET_AGENDA_FORM_ENDTIME = 'SET_AGENDA_FORM_ENDTIME';
+export const SET_AGENDA_FORM_DATE = 'SET_AGENDA_FORM_DATE';
 export const TOGGLE_AGENDA_FORM_IMPORTANT = 'TOGGLE_AGENDA_FORM_IMPORTANT';
 
 
@@ -39,6 +40,11 @@ export const setAgendaFormStartTime = params => ({
 
 export const setAgendaFormEndTime = params => ({
     type: SET_AGENDA_FORM_ENDTIME,
+    params
+});
+
+export const setAgendaFormDate = params => ({
+    type: SET_AGENDA_FORM_DATE,
     params
 });
 

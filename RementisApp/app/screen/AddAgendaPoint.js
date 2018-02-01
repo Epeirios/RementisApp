@@ -38,7 +38,7 @@ class AddAgendaPoint extends Component {
         messageId={this.props.selectedMessage}
       />
     );
-    if (this.props.isFetching) {
+    if (this.props.isFetching === undefined) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 
@@ -64,7 +64,7 @@ class AddAgendaPoint extends Component {
 const mapStateToProps = state => ({
   isFetching: state.rementis.isFetching,
   selectedPatient: state.selects.patientSelected,
-  selectedMessage: state.selects.messageSelected,
+  selectedMessage: state.selects.messageSelected
 });
 
 //export default Contacts;

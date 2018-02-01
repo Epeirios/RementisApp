@@ -20,6 +20,7 @@ import {
   setAgendaFormDescription,
   setAgendaFormStartTime,
   setAgendaFormEndTime,
+  setAgendaFormDate,
   clearAgendaForm
 } from "../../actions/agendaForm";
 
@@ -30,7 +31,8 @@ class AddAgendaPointForm extends Component {
     this.props.dispatch(getProfileData());
     this.setState({
       isStartTimePickerVisible: false,
-      isEndTimePickerVisible: false
+      isEndTimePickerVisible: false,
+      isDatePickerVisible: false
     });
   }
 
@@ -63,6 +65,23 @@ class AddAgendaPointForm extends Component {
 
     this.props.dispatch(setAgendaFormEndTime(time));
     this._hideEndTimePicker();
+  };
+
+  _showDatePicker = () => {
+    Keyboard.dismiss();
+    this.setState({ isDatePickerVisible: true });
+  };
+
+  _hideDatePicker = () => this.setState({ isDatePickerVisible: false });
+
+  _handleDatePicked = date => { 
+    date = date
+      .toISOString()
+      .replace("/", "-")
+      .replace("/", "-")
+      .substring(0, 19);
+    this.props.dispatch(setAgendaFormDate(date));
+    this._hideDatePicker();
   };
 
   _handleCheckBox = () => {
@@ -104,8 +123,18 @@ class AddAgendaPointForm extends Component {
         });
         break;
       case "PUT":
-        url = `http://rementisapi.azurewebsites.net/api/Agendadata/${messageId}`;
-        body = "";
+        url = "http://rementisapi.azurewebsites.net/api/Agendadata";
+        body = JSON.stringify({
+          messageId: this.props.messageSelected,
+          title: this.props.agendaForm.title,
+          costumerId: this.props.patientSelected,
+          description: this.props.agendaForm.description,
+          startDate: this.props.agendaForm.startDate,
+          endDate: this.props.agendaForm.endDate,
+          startTime: this.props.agendaForm.startTime,
+          endTime: this.props.agendaForm.startTime,
+          priority: this.props.agendaForm.priority
+        });
         break;
     }
 
@@ -157,6 +186,12 @@ class AddAgendaPointForm extends Component {
           onFocus={this._showEndTimePicker}
           value={this.props.agendaForm.endTime}
         />
+        <FormLabel labelStyle={styles.text}>Datum</FormLabel>
+        <FormInput
+          inputStyle={styles.text}
+          onFocus={this._showDatePicker}
+          value={this.props.agendaForm.startDate}
+        />
         <FormLabel labelStyle={styles.text}>Prioriteit</FormLabel>
         <CheckBox
           title="Belangrijk"
@@ -176,6 +211,12 @@ class AddAgendaPointForm extends Component {
           onConfirm={this._handleEndTimePicked}
           onCancel={this._hideEndTimePicker}
           mode={"time"}
+        />
+        <DateTimePicker
+          isVisible={this.state.isDatePickerVisible}
+          onConfirm={this._handleDatePicked}
+          onCancel={this._hideDatePicker}
+          mode={"date"}
         />
 
         <Divider style={styles.divider} />

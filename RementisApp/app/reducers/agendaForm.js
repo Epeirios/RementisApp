@@ -1,3 +1,5 @@
+import moment from "moment";
+
 import {
   GET_AGENDA_FORM,
   SET_AGENDA_FORM,
@@ -6,14 +8,18 @@ import {
   SET_AGENDA_FORM_DESCRIPTION,
   SET_AGENDA_FORM_STARTTIME,
   SET_AGENDA_FORM_ENDTIME,
+  SET_AGENDA_FORM_DATE,
   TOGGLE_AGENDA_FORM_IMPORTANT
 } from "../actions/agendaForm";
+
+let currentDate = moment().format();
+currentDate = currentDate.replace("/", "-").replace("/", "-").substring(0,19);
 
 const initialState = {
   title: "",
   description: "",
-  startDate: "1991-01-01T00:00:00",
-  endDate: "1991-01-01T00:00:00",
+  startDate: currentDate,
+  endDate: currentDate,
   startTime: "00:00:00",
   endTime: "00:00:00",
   priority: false
@@ -39,12 +45,12 @@ export default (state = initialState, action) => {
         title: action.params
       };
     case SET_AGENDA_FORM_DESCRIPTION:
-      return {        
+      return {
         ...state,
         description: action.params
       };
     case SET_AGENDA_FORM_STARTTIME:
-      return {        
+      return {
         ...state,
         startTime: action.params
       };
@@ -52,6 +58,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         endTime: action.params
+      };
+    case SET_AGENDA_FORM_DATE:
+      return {
+        ...state,
+        startDate: action.params,
+        endDate: action.params
       };
     case TOGGLE_AGENDA_FORM_IMPORTANT:
       return {
