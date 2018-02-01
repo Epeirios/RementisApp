@@ -12,6 +12,7 @@ import { setSelectedPatient } from "../../actions/selects";
 import { connect } from "react-redux";
 
 import moment from "moment";
+import agendaPointStates from "../../enums/agendaPointStates";
 
 const GLOBAL = require("../../config/Globals");
 
@@ -22,9 +23,11 @@ const TEXTCOLOR = GLOBAL.COLOR.GREYBLUE;
 
 const GetStatusCount = (array, state) => {
   let counter = 0;
-
+  
   array.forEach(element => {
-    if (element.state == state) {
+    elementState = element.state;
+
+    if (elementState == state) {
       counter++;
     }
   });
@@ -40,7 +43,6 @@ class ContactListItem extends Component {
 
   getAgendaItems(date) {
     const { agenda } = this.props.profile;
-
     let items = [];
 
     agenda.forEach(element => {

@@ -13,7 +13,7 @@ import { getProfileData } from "../../actions/rementis";
 
 import { connect } from "react-redux";
 
-import { Avatar } from "react-native-elements";
+import { Avatar, Divider } from "react-native-elements";
 import { Panel } from "../../components/Panel";
 
 const GLOBAL = require("../../config/Globals");
@@ -100,7 +100,15 @@ class AgendaItem extends Component {
         statusContainer = <Circle icon={"md-close"} color={GLOBAL.COLOR.RED} />;
         break;
       default:
-        statusContainer = <View />;
+        statusContainer = (
+          <Circle icon={"md-alert"} color={GLOBAL.COLOR.GREYBLUE} />
+        );
+    }
+
+    let importantContainer = <View />;
+
+    if (priority) {
+      importantContainer = <Avatar small rounded icon={{ name: "warning" }} />;
     }
 
     let header;
@@ -108,9 +116,14 @@ class AgendaItem extends Component {
     header = (
       <View style={styles.headerContainer}>
         {statusContainer}
-        <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
-          {title}
-        </TextBox>
+        <View style={styles.headerDetailsContainer}>
+          <TextBox fontSize={TITLE_FONTSIZE} fontColor={TEXTCOLOR}>
+            {title}
+          </TextBox>
+          <TextBox fontSize={FONTSIZE} fontColor={TEXTCOLOR}>
+            {`${startTime} - ${endTime}`}
+          </TextBox>
+        </View>
       </View>
     );
 
@@ -120,13 +133,25 @@ class AgendaItem extends Component {
           <Panel title={title} header={header}>
             <View style={styles.bodyContainer}>
               <View style={styles.detailsContainer}>
-                <TextBox
-                  fontSize={FONTSIZE}
-                  fontColor={TEXTCOLOR}
-                  numberOfLine={4}
+                <Divider style={{ backgroundColor: GLOBAL.COLOR.GREYBLUE }} />
+                <View
+                  style={{
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start"
+                  }}
                 >
-                  {description}
-                </TextBox>
+                  <Text
+                    style={{
+                      alignSelf: "flex-start",
+                      fontSize: FONTSIZE,
+                      color: TEXTCOLOR,
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start"
+                    }}
+                  >
+                    {description}
+                  </Text>
+                </View>
               </View>
               <View style={styles.crudContainer}>
                 <Avatar

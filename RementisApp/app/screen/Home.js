@@ -31,10 +31,16 @@ class Home extends Component {
           }
         ]}
       >
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Gemaakt door:</TextBox>
         <TextBox fontColor={GLOBAL.COLOR.WHITE}>Kevin Heugen</TextBox>
         <TextBox fontColor={GLOBAL.COLOR.WHITE}>Emiel Janssen</TextBox>
         <TextBox fontColor={GLOBAL.COLOR.WHITE}>Darryl Lemmens</TextBox>
         <TextBox fontColor={GLOBAL.COLOR.WHITE}>Christian Clermont</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}> </TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}> </TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>In opdracht van:</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Rementis</TextBox>
+        <TextBox fontColor={GLOBAL.COLOR.WHITE}>Zuyd Hogeschool</TextBox>
       </ScreenTemplate>
     );
   }

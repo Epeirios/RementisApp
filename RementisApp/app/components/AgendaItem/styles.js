@@ -32,13 +32,20 @@ export default EStyleSheet.create({
   },
   textContainer: {},
   headerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between"
+    width: "100%",
+    flexDirection: "row",   
+    justifyContent: "flex-start",
+    alignItems: "flex-start"
   },
   bodyContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
+  },
+  headerDetailsContainer:{
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-start"
+  },
+  headerSubDetailsContainer: {
+    flexDirection: "row",
   }
 });
