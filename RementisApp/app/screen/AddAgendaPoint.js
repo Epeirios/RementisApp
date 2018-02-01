@@ -38,7 +38,7 @@ class AddAgendaPoint extends Component {
         messageId={this.props.selectedMessage}
       />
     );
-    if (this.props.isFetching === undefined) {
+    if (this.props.isFetching) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 

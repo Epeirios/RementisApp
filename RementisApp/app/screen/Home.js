@@ -5,6 +5,9 @@ import { ScreenTemplate } from "../components/ScreenTemplate";
 import { Container } from "../components/Container";
 import { Footer, Header } from "../components/Header&Footer";
 import { TextBox } from "../components/TextBox";
+import { connect } from "react-redux";
+
+import { updateProfile } from "../actions/rementis";
 
 const GLOBAL = require("../config/Globals");
 
@@ -16,6 +19,10 @@ class Home extends Component {
   static propTypes = {
     navigation: PropTypes.object
   };
+
+  componentWillMount() {
+    this.props.dispatch(updateProfile());
+  }
 
   render() {
     return (
@@ -46,4 +53,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);

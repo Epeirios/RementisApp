@@ -1,7 +1,8 @@
 import {
   GET_PROFILE_DATA,
   GET_PROFILE_DATA_ERROR,
-  PROFILE_DATA
+  PROFILE_DATA,
+  UPDATE_PROFILE
 } from "../actions/rementis";
 
 import { agendaPointStatesEnum } from "../enums";
@@ -69,7 +70,6 @@ const reducer = (state = initialState, action) => {
     case GET_PROFILE_DATA:
       return {
         ...state,
-        isFetching: true
       };
     case GET_PROFILE_DATA_ERROR:
       return {
@@ -81,6 +81,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         profiles: action.result.profile,
         isFetching: false
+      };
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        isFetching: true
       };
     default:
       return state;

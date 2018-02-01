@@ -86,7 +86,7 @@ class ContactAgendaFeed extends Component {
         }}
       />
     );
-    if (this.props.isFetching  === undefined) {
+    if (this.props.isFetching) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 

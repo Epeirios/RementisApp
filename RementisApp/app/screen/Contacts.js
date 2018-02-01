@@ -35,7 +35,7 @@ class Contacts extends Component {
         onPress={this.handleOnPress.bind(this)}
       />
     );
-    if (!this.props.isFetching === undefined) {
+    if (this.props.isFetching) {
       body = <ActivityIndicator size="large" color="#fff" />;
     }
 

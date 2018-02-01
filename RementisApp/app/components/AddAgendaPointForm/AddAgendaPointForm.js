@@ -13,7 +13,7 @@ import {
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { connect } from "react-redux";
-import { getProfileData } from "../../actions/rementis";
+import { getProfileData, updateProfile } from "../../actions/rementis";
 import {
   toggleAgendaFormImportant,
   setAgendaFormTitle,
@@ -79,7 +79,7 @@ class AddAgendaPointForm extends Component {
       .toISOString()
       .replace("/", "-")
       .replace("/", "-")
-      .substring(0, 19);
+      .substring(0, 10);
     this.props.dispatch(setAgendaFormDate(date));
     this._hideDatePicker();
   };
@@ -100,7 +100,8 @@ class AddAgendaPointForm extends Component {
     }
 
     this._sendAgendaItem(method);
-    this.props.dispatch(clearAgendaForm());
+    this.props.dispatch(clearAgendaForm());    
+    this.props.dispatch(updateProfile());
     this.props.onConfirm();
   };
 
@@ -115,10 +116,10 @@ class AddAgendaPointForm extends Component {
           title: this.props.agendaForm.title,
           costumerId: this.props.patientSelected,
           description: this.props.agendaForm.description,
-          startDate: this.props.agendaForm.startDate,
-          endDate: this.props.agendaForm.endDate,
+          startDate: this.props.agendaForm.startDate + "T00:00:00",
+          endDate: this.props.agendaForm.endDate + "T00:00:00",
           startTime: this.props.agendaForm.startTime,
-          endTime: this.props.agendaForm.startTime,
+          endTime: this.props.agendaForm.endTime,
           priority: this.props.agendaForm.priority
         });
         break;
@@ -129,10 +130,10 @@ class AddAgendaPointForm extends Component {
           title: this.props.agendaForm.title,
           costumerId: this.props.patientSelected,
           description: this.props.agendaForm.description,
-          startDate: this.props.agendaForm.startDate,
-          endDate: this.props.agendaForm.endDate,
+          startDate: this.props.agendaForm.startDate + "T00:00:00",
+          endDate: this.props.agendaForm.endDate + "T00:00:00",
           startTime: this.props.agendaForm.startTime,
-          endTime: this.props.agendaForm.startTime,
+          endTime: this.props.agendaForm.endTime,
           priority: this.props.agendaForm.priority
         });
         break;

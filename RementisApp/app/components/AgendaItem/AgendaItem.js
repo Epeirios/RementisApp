@@ -9,7 +9,7 @@ import { agendaPointStatesEnum } from "../../enums";
 
 import { setSelectedMessage } from "../../actions/selects";
 import { setAgendaForm } from "../../actions/agendaForm";
-import { getProfileData } from "../../actions/rementis";
+import { getProfileData, updateProfile } from "../../actions/rementis";
 
 import { connect } from "react-redux";
 
@@ -58,7 +58,10 @@ class AgendaItem extends Component {
       [
         {
           text: "Ja",
-          onPress: () => this.handleRemoveItem(messageId)
+          onPress: () => {
+            this.handleRemoveItem(messageId);
+            this.props.dispatch(updateProfile());
+          }
         },
         {
           text: "Nee",

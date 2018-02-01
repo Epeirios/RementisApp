@@ -13,7 +13,7 @@ import {
 } from "../actions/agendaForm";
 
 let currentDate = moment().format();
-currentDate = currentDate.replace("/", "-").replace("/", "-").substring(0,19);
+currentDate = currentDate.replace("/", "-").replace("/", "-").substring(0,10);
 
 const initialState = {
   title: "",
