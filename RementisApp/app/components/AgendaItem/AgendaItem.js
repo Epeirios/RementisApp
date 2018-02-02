@@ -30,8 +30,8 @@ class AgendaItem extends Component {
       setAgendaForm({
         title: item.title,
         description: item.description,
-        startDate: item.startDate,
-        endDate: item.endDate,
+        startDate: item.startDate.substring(0, 10),
+        endDate: item.endDate.substring(0, 10),
         startTime: item.startTime,
         endTime: item.endTime,
         priority: item.priority
