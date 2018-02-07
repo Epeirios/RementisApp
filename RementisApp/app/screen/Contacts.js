@@ -36,7 +36,7 @@ class Contacts extends Component {
       />
     );
     if (this.props.isFetching) {
-      body = <ActivityIndicator size="large" color="#fff" />;
+      <View />;
     }
 
     return (
@@ -51,6 +51,7 @@ class Contacts extends Component {
             }
           }
         ]}
+        scrollRefresh={true}
       >
         {body}
       </ScreenTemplate>

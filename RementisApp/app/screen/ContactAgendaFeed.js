@@ -87,7 +87,7 @@ class ContactAgendaFeed extends Component {
       />
     );
     if (this.props.isFetching) {
-      body = <ActivityIndicator size="large" color="#fff" />;
+      <View />;
     }
 
     return (
@@ -122,6 +122,7 @@ class ContactAgendaFeed extends Component {
             />
           </View>
         }
+        scrollRefresh={true}
       >
         {body}
       </ScreenTemplate>
